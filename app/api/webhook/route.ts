@@ -1,4 +1,4 @@
-import { PROJECT_TITLE } from "@/lib/constants"
+import { MINIAPP_TITLE } from "@/lib/constants"
 import { parseWebhookEvent, ParseWebhookEvent, verifyAppKeyWithNeynar } from "@farcaster/miniapp-node"
 import axios from "axios"
 import { randomUUID } from "crypto"
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
 
           await axios.post("https://api.farcaster.xyz/v1/miniapp-notifications", {
             notificationId: randomUUID(),
-            title: PROJECT_TITLE.toLowerCase(),
+            title: MINIAPP_TITLE.toLowerCase(),
             body: "successfully added",
             targetUrl: `https://${NEXT_PUBLIC_HOST}`,
             tokens: [event.notificationDetails.token],
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
 
         await axios.post("https://api.farcaster.xyz/v1/miniapp-notifications", {
           notificationId: randomUUID(),
-          title: PROJECT_TITLE.toLowerCase(),
+          title: MINIAPP_TITLE.toLowerCase(),
           body: "notifications are now enabled",
           targetUrl: `https://${NEXT_PUBLIC_HOST}`,
           tokens: [event.notificationDetails.token],

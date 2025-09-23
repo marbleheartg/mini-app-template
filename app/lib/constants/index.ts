@@ -1,6 +1,6 @@
-const PROJECT_TITLE = "PROJECT_TITLE"
+const MINIAPP_TITLE = "MINIAPP_TITLE"
 
-const PROJECT_DESCRIPTION = "PROJECT_DESCRIPTION"
+const MINIAPP_DESCRIPTION = "MINIAPP_DESCRIPTION"
 
 const MINIAPP = {
   version: "next",
@@ -11,11 +11,11 @@ const MINIAPP = {
     action: {
       type: "launch_miniapp",
       url: `https://${process.env.NEXT_PUBLIC_HOST}`,
-      name: PROJECT_TITLE,
+      name: MINIAPP_TITLE,
       splashImageUrl: `https://${process.env.NEXT_PUBLIC_HOST}/images/og/splash.png`,
       splashBackgroundColor: "#ffffff",
     },
   },
 }
 
-export { MINIAPP, PROJECT_DESCRIPTION, PROJECT_TITLE }
+export { MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE }

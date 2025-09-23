@@ -1,8 +1,7 @@
 import { Inter } from "next/font/google"
 import { ReactNode } from "react"
 import "./globals.css"
-import { MINIAPP, PROJECT_DESCRIPTION, PROJECT_TITLE } from "./lib/constants"
-import ImagesPreload from "./lib/imagesPreload"
+import { MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE } from "./lib/constants"
 
 const inter = Inter({
   variable: "--inter",
@@ -21,13 +20,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://auth.farcaster.xyz" />
         <link rel="icon" type="image/svg+xml" href="/images/global/logo.svg" />
         <meta name="fc:miniapp" content={JSON.stringify(MINIAPP)} />
-        <meta name="description" content={PROJECT_DESCRIPTION} />
-        <title>{PROJECT_TITLE}</title>
+        <meta name="description" content={MINIAPP_DESCRIPTION} />
+        <title>{MINIAPP_TITLE}</title>
       </head>
-      <body className={`${inter.variable} antialiased`}>
-        {children}
-        <ImagesPreload />
-      </body>
+      <body className={`${inter.variable} antialiased`}>{children}</body>
     </html>
   )
 }

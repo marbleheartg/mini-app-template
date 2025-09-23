@@ -1,5 +1,5 @@
 import verifySession from "@/lib/api/utils/verifySession"
-import { MINIAPP, PROJECT_DESCRIPTION, PROJECT_TITLE } from "@/lib/constants"
+import { MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE } from "@/lib/constants"
 import { NextRequest, NextResponse } from "next/server"
 
 const { NEXT_PUBLIC_HOST } = process.env
@@ -52,7 +52,7 @@ export async function middleware(request: NextRequest) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;")
 
-      const response = `<html><head><meta charset="UTF-8"><title>${PROJECT_TITLE}</title><meta name="fc:miniapp" content="${parsedMiniapp}" /><meta name="description" content="${PROJECT_DESCRIPTION}" /></head><body></body></html>`
+      const response = `<html><head><meta charset="UTF-8"><title>${MINIAPP_TITLE}</title><meta name="fc:miniapp" content="${parsedMiniapp}" /><meta name="description" content="${MINIAPP_DESCRIPTION}" /></head><body></body></html>`
 
       return new NextResponse(response, {
         headers: { "content-type": "text/html" },
