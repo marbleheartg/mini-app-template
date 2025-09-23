@@ -20,6 +20,11 @@ export default function App() {
         updateStore({ user, client, capabilities })
       } catch (error) {}
 
+      // const preloadImage = new Image()
+      // preloadImage.src = "/images/global/bg.svg"
+      // preloadImage.onload = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
+      // preloadImage.onerror = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
+
       await sdk.actions.ready({ disableNativeGestures: true }).catch(() => {})
 
       try {
