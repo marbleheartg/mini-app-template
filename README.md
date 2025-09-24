@@ -77,6 +77,16 @@ hardhat.config.ts         # Hardhat config (Cancun, Base fork)
 
 ## Deployment
 
+### Thirdweb Deployment
+
+Deploy contracts using Thirdweb CLI:
+
+```bash
+npx thirdweb deploy -k <project-secret-key>
+```
+
+### Hardhat Ignition Deployment
+
 This repo includes an Ignition module scaffold at `ignition/modules/Contract.ts`. If you plan to deploy using Hardhat Ignition, ensure the plugin is installed and configured.
 
 Basic approach (once plugin is added):

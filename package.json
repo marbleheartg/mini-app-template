@@ -8,17 +8,18 @@
     "compile": "clear && bunx hardhat compile"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox-viem": "^4.1.0",
+    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
     "@types/bun": "latest",
-    "dotenv-cli": "^8.0.0"
+    "dotenv-cli": "^10.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.8.3"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.4.0",
+    "@types/mocha": "^10.0.10",
     "dotenv": "^17.2.2",
-    "hardhat": "^2.26.3",
+    "hardhat": "^3.0.6",
     "viem": "^2.37.8"
   }
 }
