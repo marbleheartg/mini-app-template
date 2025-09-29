@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
+    "@nomicfoundation/hardhat-viem": "^3.0.0",
     "@types/bun": "latest",
     "dotenv-cli": "^10.0.0"
   },

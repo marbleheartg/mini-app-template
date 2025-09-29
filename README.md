@@ -82,7 +82,7 @@ hardhat.config.ts         # Hardhat config (Cancun, Base fork)
 Deploy contracts using Thirdweb CLI:
 
 ```bash
-npx thirdweb deploy -k <project-secret-key>
+bunx thirdweb deploy -k <project-secret-key>
 ```
 
 ### Hardhat Ignition Deployment
