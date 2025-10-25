@@ -7,7 +7,7 @@ dotenv.config();
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.28",
+    version: "0.8.30",
     settings: {
       viaIR: false,
       optimizer: {
@@ -21,7 +21,7 @@ const config: HardhatUserConfig = {
     hardhat: {
       hardfork: "cancun",
       forking: {
-        url: `https://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+        url: ``,
         blockNumber: 31564648,
       },
       chains: {

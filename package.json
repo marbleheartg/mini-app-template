@@ -3,9 +3,12 @@
   "module": "index.ts",
   "private": true,
   "scripts": {
-    "fork": "clear && dotenv bunx hardhat node --fork https://base-mainnet.g.alchemy.com/v2/$ALCHEMY_API_KEY --fork-block-number 31564648",
-    "test": "clear && bunx hardhat test",
-    "compile": "clear && bunx hardhat compile"
+    "fork": "clear && bunx hardhat node --fork https://mainnet.optimism.io",
+    "test": "clear && bun run clean && bun run compile && bun run deploy && bun wagmi generate && bunx hardhat test --network localhost",
+    "clean": "clear && bunx hardhat clean",
+    "compile": "clear && bunx hardhat compile",
+    "deploy": "clear && bunx hardhat ignition deploy ./ignition/modules/Contract.ts --network localhost --reset",
+    "tunnel": "clear && ngrok http 8545"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
