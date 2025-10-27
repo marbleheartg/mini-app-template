@@ -1,7 +1,7 @@
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
 export default buildModule("ContractModule", (m) => {
-  const Contract = m.contract("Contract", []);
+  const contract = m.contract("Contract", []);
 
-  return { Contract };
+  return { contract };
 });

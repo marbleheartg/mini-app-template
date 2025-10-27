@@ -1,36 +1,26 @@
-import "@nomicfoundation/hardhat-toolbox-viem";
-import * as dotenv from "dotenv";
+import hardhatToolboxViemPlugin from "@nomicfoundation/hardhat-toolbox-viem";
 import type { HardhatUserConfig } from "hardhat/config";
-import { base } from "viem/chains";
-
-dotenv.config();
+// import { configVariable } from "hardhat/config";
 
 const config: HardhatUserConfig = {
+  plugins: [hardhatToolboxViemPlugin],
   solidity: {
     version: "0.8.30",
     settings: {
-      viaIR: false,
       optimizer: {
         enabled: true,
         runs: 200,
       },
-      evmVersion: "cancun",
     },
   },
   networks: {
-    hardhat: {
-      hardfork: "cancun",
-      forking: {
-        url: ``,
-        blockNumber: 31564648,
-      },
-      chains: {
-        [base.id]: {
-          hardforkHistory: {
-            cancun: 0,
-          },
-        },
-      },
+    hardhatMainnet: {
+      type: "edr-simulated",
+      chainType: "l1",
+    },
+    hardhatOp: {
+      type: "edr-simulated",
+      chainType: "op",
     },
   },
 };

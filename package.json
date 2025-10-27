@@ -1,29 +1,24 @@
 {
   "name": "mini-app-template",
-  "module": "index.ts",
+  "version": "1.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "fork": "clear && bunx hardhat node --fork https://mainnet.optimism.io",
-    "test": "clear && bun run clean && bun run compile && bun run deploy && bun wagmi generate && bunx hardhat test --network localhost",
+    "fork": "clear && bunx hardhat node --fork https://mainnet.base.org",
+    "test": "clear && bun run clean && bun run compile && bun run deploy && bunx hardhat test --network localhost",
     "clean": "clear && bunx hardhat clean",
     "compile": "clear && bunx hardhat compile",
     "deploy": "clear && bunx hardhat ignition deploy ./ignition/modules/Contract.ts --network localhost --reset",
     "tunnel": "clear && ngrok http 8545"
   },
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
-    "@nomicfoundation/hardhat-viem": "^3.0.0",
-    "@types/bun": "latest",
-    "dotenv-cli": "^10.0.0"
-  },
-  "peerDependencies": {
-    "typescript": "^5.8.3"
-  },
   "dependencies": {
+    "@nomicfoundation/hardhat-ignition": "^3.0.3",
+    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
     "@openzeppelin/contracts": "^5.4.0",
-    "@types/mocha": "^10.0.10",
-    "dotenv": "^17.2.3",
+    "@types/node": "^22.18.12",
+    "forge-std": "github:foundry-rs/forge-std#v1.9.4",
     "hardhat": "^3.0.9",
+    "typescript": "~5.8.3",
     "viem": "^2.38.4"
   }
 }
