@@ -23,7 +23,6 @@ export async function GET() {
       ogImageUrl: `https://${NEXT_PUBLIC_HOST}/images/og/manifest/og.png`,
       castShareUrl: `https://${NEXT_PUBLIC_HOST}`,
       heroImageUrl: `https://${NEXT_PUBLIC_HOST}/images/og/manifest/og.png`,
-      webhookUrl: `https://${NEXT_PUBLIC_HOST}/api/webhook`,
       canonicalDomain: NEXT_PUBLIC_HOST,
       screenshotUrls: [
         `https://${NEXT_PUBLIC_HOST}/images/og/manifest/screenshots/1.jpg`,
@@ -33,6 +32,8 @@ export async function GET() {
       requiredChains: ["eip155:108453"],
       requiredCapabilities: ["actions.viewProfile", "actions.composeCast", "actions.ready", "actions.close"],
       tags: ["1", "2", "3", "4", "5"],
+
+      webhookUrl: "NEYNAR_WEBHOOK_URL",
     },
   })
 }
