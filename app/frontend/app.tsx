@@ -6,7 +6,9 @@ import { useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router"
 import Header from "./components/Header"
 import Menu from "./components/Menu"
+import Claim from "./pages/Claim"
 import Home from "./pages/Home"
+import Promote from "./pages/Promote"
 
 export default function App() {
   useEffect(() => {
@@ -14,24 +16,19 @@ export default function App() {
     ;(async function () {
       try {
         const { user, client } = await sdk.context
-
         const capabilities = await sdk.getCapabilities()
-
         updateStore({ user, client, capabilities })
-      } catch (error) {}
 
-      // const preloadImage = new Image()
-      // preloadImage.src = "/images/global/bg.svg"
-      // preloadImage.onload = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
-      // preloadImage.onerror = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
+        // const preloadImage = new Image()
+        // preloadImage.src = "/images/global/bg.svg"
+        // preloadImage.onload = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
+        // preloadImage.onerror = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
+      } catch (error) {}
 
       await sdk.actions.ready({ disableNativeGestures: true }).catch(() => {})
 
-      try {
-        const { token: session } = await sdk.quickAuth.getToken()
-        updateStore({ session })
-        // axios.post("/api/login", {}, { headers: { Authorization: `Bearer ${session}` } })
-      } catch (error) {}
+      const { token: session } = await sdk.quickAuth.getToken()
+      updateStore({ session })
     })()
   }, [])
 
@@ -39,16 +36,11 @@ export default function App() {
     <div onDragStart={e => e.preventDefault()}>
       <Providers>
         <BrowserRouter>
+          <Header />
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Header />
-                  <Home />
-                </>
-              }
-            />
+            <Route path="/" element={<Home />} />
+            <Route path="/promote" element={<Promote />} />
+            <Route path="/claim" element={<Claim />} />
           </Routes>
           <Menu />
         </BrowserRouter>
