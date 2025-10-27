@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
   rewrites: async () => {
     return [
       {
+        source: "/.well-known/farcaster.json",
+        destination: "/api/manifest",
+      },
+      {
         source: "/((?!api/|_next/).*)",
         destination: "/shell",
       },
