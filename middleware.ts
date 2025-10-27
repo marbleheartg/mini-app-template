@@ -10,22 +10,20 @@ export const config = {
 }
 
 export async function middleware(request: NextRequest) {
-  if (request.headers.get("x-middleware-subrequest"))
-    return NextResponse.json({ error: "Forbidden header detected" }, { status: 403 })
+  if (request.headers.get("x-middleware-subrequest")) return NextResponse.json({ error: "Forbidden header detected" }, { status: 403 })
 
   const { pathname } = request.nextUrl
 
   if (pathname.startsWith("/api")) {
     if (request.method === "GET") return NextResponse.next()
 
-    const protectedRoutes = ["/api/login"]
+    const protectedRoutes = [""]
 
     if (!protectedRoutes.includes(pathname)) return NextResponse.next()
 
     const authHeader = request.headers.get("authorization")
 
-    if (!authHeader?.startsWith("Bearer "))
-      return NextResponse.json({ error: "Unauthorized: No token provided" }, { status: 401 })
+    if (!authHeader?.startsWith("Bearer ")) return NextResponse.json({ error: "Unauthorized: No token provided" }, { status: 401 })
 
     const session = authHeader.split(" ")[1]
 

@@ -11,7 +11,6 @@ const wagmiConfig = createConfig({
   transports: {
     [base.id]: http(),
   },
-  // @ts-ignore
   connectors: [miniAppConnector()],
 })
 

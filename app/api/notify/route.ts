@@ -20,10 +20,8 @@ export async function POST(req: NextRequest) {
     if (secret !== SECRET) throw new Error("NotifyAccessDenied")
 
     const notificationTokens = (
-      await usersCollection
-        .find({ notificationToken: { $exists: true } }, { projection: { notificationToken: 1, _id: 0 } })
-        .toArray()
-    ).map(val => val.notificationToken)
+      await usersCollection.find({ notificationToken: { $exists: true } }, { projection: { notificationToken: 1, _id: 0 } }).toArray()
+    ).map((val: { notificationToken: any }) => val.notificationToken)
 
     if (!notificationTokens) throw new Error("NoNotificationTokens")
 
@@ -44,10 +42,7 @@ export async function POST(req: NextRequest) {
 
       if (invalidTokens?.length) {
         console.log("invalidTokens", invalidTokens)
-        await usersCollection.updateMany(
-          { notificationToken: { $in: invalidTokens } },
-          { $unset: { notificationToken: "" } },
-        )
+        await usersCollection.updateMany({ notificationToken: { $in: invalidTokens } }, { $unset: { notificationToken: "" } })
       }
 
       await new Promise(res => setTimeout(res, 1000))
@@ -60,6 +55,6 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// curl -X POST https://monad-flowers.xyz/api/notify \
+// curl -X POST https://NEXT_PUBLIC_HOST/api/notify \
 //   -H "Content-Type: application/json" \
 //   -d @payload.json
