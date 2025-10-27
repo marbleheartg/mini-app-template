@@ -1,19 +1,33 @@
 # dependencies (bun install)
 node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # output
 out
 dist
 *.tgz
+/build
+/bundle
 
 # code coverage
 coverage
 *.lcov
+/coverage.json
 
 # logs
 logs
 _.log
 report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
 # caches
 .eslintcache
@@ -30,39 +44,14 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 /cache
 /artifacts
 
-# TypeChain files
-/typechain
-/typechain-types
-
-# solidity-coverage files
-/coverage.json
-
 # Hardhat Ignition default folder for deployments against a local node
 ignition/deployments/chain-31337
-
-# dependencies
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
 # next.js
 /.next/
 
-# production
-/build
-
 # misc
 *.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -73,42 +62,3 @@ yarn-error.log*
 
 # typescript
 next-env.d.ts
-
-node_modules
-.env
-
-# Hardhat files
-/cache
-/artifacts
-
-# TypeChain files
-/typechain
-/typechain-types
-
-# solidity-coverage files
-/coverage
-/coverage.json
-
-# Hardhat Ignition default folder for deployments against a local node
-ignition/deployments/chain-31337
-
-# Node modules
-/node_modules
-
-# Compilation output
-/dist
-
-# pnpm deploy output
-/bundle
-
-# Hardhat Build Artifacts
-/artifacts
-
-# Hardhat compilation (v2) support directory
-/cache
-
-# Typechain output
-/types
-
-# Hardhat coverage reports
-/coverage
