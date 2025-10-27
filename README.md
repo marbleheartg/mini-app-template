@@ -4,10 +4,11 @@ A minimal Hardhat + Bun template for developing Solidity smart contracts with Ty
 
 ### Features
 
-- **Hardhat** with Solidity 0.8.28 (EVM Cancun)
-- **Forked Base Mainnet** support via Alchemy
+- **Hardhat** with Solidity 0.8.30 and EDR (Ethereum Development Runtime)
+- **Base Mainnet** forking support
 - **Bun** for fast scripts (`bunx` wrapper for Hardhat)
 - **OpenZeppelin Contracts** and **Viem**
+- **Hardhat Ignition** for deployment management
 - Example contract, test, and Ignition module scaffold
 
 ---
@@ -16,7 +17,6 @@ A minimal Hardhat + Bun template for developing Solidity smart contracts with Ty
 
 - Bun installed (`curl -fsSL https://bun.sh/install | bash`)
 - Node.js 18+ recommended
-- Alchemy API key for Base mainnet
 
 ## Setup
 
@@ -24,18 +24,17 @@ A minimal Hardhat + Bun template for developing Solidity smart contracts with Ty
    ```bash
    bun install
    ```
-2. Create a `.env` file with your Alchemy key:
-   ```bash
-   echo "ALCHEMY_API_KEY=your_alchemy_key_here" > .env
-   ```
 
 ## Scripts
 
 Defined in `package.json`:
 
+- `bun run clean` — clean build artifacts
 - `bun run compile` — compile contracts
-- `bun run test` — run tests
-- `bun run fork` — start a Hardhat node forking Base mainnet at a fixed block
+- `bun run deploy` — deploy contracts to localhost using Ignition
+- `bun run test` — run tests (includes clean, compile, deploy, and test)
+- `bun run fork` — start a Hardhat node forking Base mainnet
+- `bun run tunnel` — expose local node via ngrok tunnel
 
 Example usage:
 
@@ -44,16 +43,6 @@ bun run compile
 bun run test
 bun run fork
 ```
-
-The `fork` script uses:
-
-```bash
-dotenv bunx hardhat node \
-  --fork https://base-mainnet.g.alchemy.com/v2/$ALCHEMY_API_KEY \
-  --fork-block-number 31564648
-```
-
-Make sure `.env` contains `ALCHEMY_API_KEY`.
 
 ## Project Structure
 
@@ -72,8 +61,9 @@ hardhat.config.ts         # Hardhat config (Cancun, Base fork)
 
 ## Hardhat Configuration Notes
 
-- Solidity `0.8.28` with optimizer (200 runs), `evmVersion: "cancun"`.
-- Local `hardhat` network is configured to fork Base mainnet via Alchemy using `ALCHEMY_API_KEY`.
+- Solidity `0.8.30` with optimizer (200 runs)
+- EDR (Ethereum Development Runtime) networks configured for L1 and Optimism-style chains
+- Fork script uses Base mainnet (`https://mainnet.base.org`)
 
 ## Deployment
 
@@ -87,12 +77,16 @@ bunx thirdweb deploy -k <project-secret-key>
 
 ### Hardhat Ignition Deployment
 
-This repo includes an Ignition module scaffold at `ignition/modules/Contract.ts`. If you plan to deploy using Hardhat Ignition, ensure the plugin is installed and configured.
-
-Basic approach (once plugin is added):
+This repo includes an Ignition module scaffold at `ignition/modules/Contract.ts`. Deploy contracts using:
 
 ```bash
-bunx hardhat ignition deploy ignition/modules/Contract.ts --network hardhat
+bun run deploy
+```
+
+Or manually:
+
+```bash
+bunx hardhat ignition deploy ./ignition/modules/Contract.ts --network localhost --reset
 ```
 
 ## Troubleshooting
@@ -101,8 +95,8 @@ bunx hardhat ignition deploy ignition/modules/Contract.ts --network hardhat
   ```bash
   bun add -d typescript@^5.8.3
   ```
-- Alchemy key not picked up: confirm `.env` exists and `ALCHEMY_API_KEY` is set.
 - Bun not found: open a new terminal so your shell picks up Bun, or install via the Bun docs.
+- Fork issues: ensure you have internet connectivity for Base mainnet access.
 
 ## License
 
