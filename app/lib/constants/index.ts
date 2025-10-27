@@ -1,6 +1,6 @@
-import { contractAbi } from "../../../artifacts/contracts/Contract.sol/generated"
+// import { contractAbi } from "../../../artifacts/contracts/Contract.sol/generated"
 
-const ABI = contractAbi
+// const ABI = contractAbi
 
 const CA = ""
 
