@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "fork": "clear && bunx hardhat node --fork https://mainnet.base.org",
-    "test": "clear && bun run clean && bun run compile && bun run deploy && bunx hardhat test --network localhost",
+    "test": "clear && bun run clean && bun run compile && bun run deploy && bun wagmi generate && bunx hardhat test --network localhost",
     "clean": "clear && bunx hardhat clean",
     "compile": "clear && bunx hardhat compile",
     "deploy": "clear && bunx hardhat ignition deploy ./ignition/modules/Contract.ts --network localhost --reset",
@@ -15,11 +15,12 @@
     "@nomicfoundation/hardhat-ignition": "^3.0.3",
     "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
     "@openzeppelin/contracts": "^5.4.0",
-    "@types/node": "^22.18.12",
+    "@types/node": "^22.18.13",
+    "@wagmi/cli": "^2.7.1",
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
-    "hardhat": "^3.0.9",
+    "hardhat": "^3.0.10",
     "hardhat-reown": "^0.0.7",
     "typescript": "~5.8.3",
-    "viem": "^2.38.4"
+    "viem": "^2.38.5"
   }
 }
