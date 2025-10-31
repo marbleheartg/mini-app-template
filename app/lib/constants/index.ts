@@ -1,8 +1,4 @@
-// import { contractAbi } from "../../../artifacts/contracts/Contract.sol/generated"
-
-// const ABI = contractAbi
-
-const CA = ""
+const CA = "0x"
 
 const MINIAPP_TITLE = "MINIAPP_TITLE"
 
@@ -24,4 +20,4 @@ const MINIAPP = {
   },
 }
 
-export { ABI, CA, MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE }
+export { CA, MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE }
