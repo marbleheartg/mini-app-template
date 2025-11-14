@@ -35,7 +35,7 @@ const Button = ({
         "text-white font-bold text-base",
         "min-[390px]:text-lg",
         "rounded-2xl",
-        disabled ? "bg-[var(--inactive-accent)]" : "bg-[var(--accent)]",
+        disabled ? "bg-(--inactive-accent)" : "bg-(--accent)",
         className,
       )}
     >

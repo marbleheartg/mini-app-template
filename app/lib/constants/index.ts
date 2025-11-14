@@ -1,4 +1,4 @@
-import { contractAbi } from "../../../artifacts/contracts/types/generated"
+// import { contractAbi } from "../../../artifacts/contracts/types/generated"
 
 const CA = "0x"
 
@@ -22,4 +22,5 @@ const MINIAPP = {
   },
 }
 
-export { contractAbi as ABI, CA, MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE }
+// contractAbi as ABI
+export { CA, MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE }

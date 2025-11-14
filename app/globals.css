@@ -20,7 +20,7 @@
 
   body {
     @apply bg-black font-medium text-white;
-    @apply font-(family-name:--inter);
+    @apply font-(--inter);
   }
 
   h1 {
