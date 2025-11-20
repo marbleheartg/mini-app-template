@@ -1,6 +1,9 @@
 # dependencies (bun install)
 node_modules
 
+# contract artifacts
+artifacts
+
 # output
 out
 dist
@@ -26,15 +29,8 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # Finder (MacOS) folder config
 .DS_Store
 
-# Hardhat files
-/cache
-/artifacts
-
 # solidity-coverage files
 /coverage.json
-
-# Hardhat Ignition default folder for deployments against a local node
-ignition/deployments/chain-31337
 
 # dependencies
 /.pnp
