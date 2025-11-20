@@ -1,9 +1,6 @@
 # dependencies (bun install)
 node_modules
 
-# contract artifacts
-artifacts
-
 # output
 out
 dist

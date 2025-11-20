@@ -1,5 +1,3 @@
-// import { contractAbi } from "../../../artifacts/contracts/types/generated"
-
 const CA = "0x"
 
 const MINIAPP_TITLE = "MINIAPP_TITLE"
@@ -22,5 +20,6 @@ const MINIAPP = {
   },
 }
 
-// contractAbi as ABI
-export { CA, MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE }
+const ABI = {}
+
+export { ABI, CA, MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE }
