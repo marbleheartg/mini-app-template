@@ -4,7 +4,7 @@ A minimal, production-ready template for building Farcaster Mini Apps with Next.
 
 ### Features
 - **Next.js 15** with App Router and a SPA shell (`/shell`) via rewrites
-- **React 19** with modern hooks
+- **React 19** with modern hook
 - **Tailwind CSS v4** (via `@tailwindcss/postcss`)
 - **Farcaster Mini App SDK** integration (`@farcaster/miniapp-sdk`, `@farcaster/quick-auth`)
 - **Client error reporting hook** and API scaffolding
