@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://auth.farcaster.xyz" />
-        <link rel="icon" type="image/svg+xml" href="/images/global/logo.svg" />
+        <link rel="icon" type="image/png" sizes="256x256" href="/images/og/icon.png" />
         <meta name="fc:miniapp" content={JSON.stringify(MINIAPP)} />
         <meta name="description" content={MINIAPP_DESCRIPTION} />
         <title>{MINIAPP_TITLE}</title>
