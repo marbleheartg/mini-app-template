@@ -10,7 +10,13 @@ import { CreateConnectorFn, WagmiProvider } from "wagmi"
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID || "YOUR_PROJECT_ID"
 
 const connectors: CreateConnectorFn[] = [miniAppConnector()]
-const wagmiAdapter = new WagmiAdapter({ networks: [base], projectId, ssr: false, connectors })
+const wagmiAdapter = new WagmiAdapter({
+  networks: [base],
+  projectId,
+  ssr: false,
+  connectors,
+  // multiInjectedProviderDiscovery: false,
+})
 
 createAppKit({
   defaultNetwork: base,

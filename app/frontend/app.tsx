@@ -1,6 +1,6 @@
 import clientErrorHandling from "@/lib/clientErrorsReporting"
 import Providers from "@/lib/providers"
-import { updateStore } from "@/lib/store"
+import { store, updateStore } from "@/lib/store"
 import sdk from "@farcaster/miniapp-sdk"
 import { useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router"
@@ -11,6 +11,8 @@ import Home from "./pages/Home"
 import Promote from "./pages/Promote"
 
 export default function App() {
+  const { user, client } = store()
+
   useEffect(() => {
     clientErrorHandling()
     ;(async function () {
@@ -50,6 +52,12 @@ export default function App() {
           className={clsx("fixed top-0 left-0 w-screen h-screen object-fill -z-10")}
         /> */}
       </Providers>
+
+      {/* {process.env.NODE_ENV === "development" && (
+        <pre className="fixed bottom-0 inset-x-0 p-5 pb-15 rounded-t-4xl text-xs text-wrap bg-amber-200/50 pointer-events-none">
+          <div>{JSON.stringify({ user, client, ua: navigator.userAgent }, null, 2)}</div>
+        </pre>
+      )} */}
     </div>
   )
 }
