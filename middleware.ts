@@ -9,6 +9,8 @@ export const config = {
   matcher: ["/api/:path*", "/ogpath"],
 }
 
+const protectedRoutes = [""]
+
 export async function middleware(request: NextRequest) {
   if (request.headers.get("x-middleware-subrequest")) return NextResponse.json({ error: "Forbidden header detected" }, { status: 403 })
 
@@ -16,8 +18,6 @@ export async function middleware(request: NextRequest) {
 
   if (pathname.startsWith("/api")) {
     if (request.method === "GET") return NextResponse.next()
-
-    const protectedRoutes = [""]
 
     if (!protectedRoutes.includes(pathname)) return NextResponse.next()
 
