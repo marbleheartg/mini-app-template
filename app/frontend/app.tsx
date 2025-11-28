@@ -25,7 +25,7 @@ export default function App() {
         // preloadImage.src = "/images/global/bg.svg"
         // preloadImage.onload = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
         // preloadImage.onerror = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
-      } catch (error) {}
+      } catch {}
 
       await sdk.actions.ready({ disableNativeGestures: true }).catch(() => {})
 
