@@ -30,7 +30,7 @@
     "viem": "^2.40.3",
     "wagmi": "^2.19.5",
     "zod": "^4.1.13",
-    "zustand": "^5.0.8"
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
