@@ -12,15 +12,15 @@
     "tunnel": "clear && ngrok http 8545"
   },
   "dependencies": {
-    "@nomicfoundation/hardhat-ignition": "^3.0.5",
+    "@nomicfoundation/hardhat-ignition": "^3.0.6",
     "@nomicfoundation/hardhat-toolbox-viem": "^5.0.1",
     "@openzeppelin/contracts": "^5.4.0",
     "@types/node": "^22.19.1",
     "@wagmi/cli": "^2.8.0",
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
-    "hardhat": "^3.0.16",
+    "hardhat": "^3.0.17",
     "hardhat-reown": "^0.0.7",
     "typescript": "~5.8.3",
-    "viem": "^2.40.3"
+    "viem": "^2.41.2"
   }
 }
