@@ -20,7 +20,7 @@
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
     "hardhat": "^3.0.17",
     "hardhat-reown": "^0.0.7",
-    "typescript": "~5.8.3",
+    "typescript": "~5.9.3",
     "viem": "^2.41.2"
   }
 }

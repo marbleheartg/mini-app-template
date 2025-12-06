@@ -4,16 +4,16 @@
     "": {
       "name": "mini-app-template",
       "dependencies": {
-        "@nomicfoundation/hardhat-ignition": "^3.0.5",
+        "@nomicfoundation/hardhat-ignition": "^3.0.6",
         "@nomicfoundation/hardhat-toolbox-viem": "^5.0.1",
         "@openzeppelin/contracts": "^5.4.0",
         "@types/node": "^22.19.1",
         "@wagmi/cli": "^2.8.0",
         "forge-std": "github:foundry-rs/forge-std#v1.9.4",
-        "hardhat": "^3.0.16",
+        "hardhat": "^3.0.17",
         "hardhat-reown": "^0.0.7",
-        "typescript": "~5.8.3",
-        "viem": "^2.40.3",
+        "typescript": "~5.9.3",
+        "viem": "^2.41.2",
       },
     },
   },
@@ -494,7 +494,7 @@
 
     "type-is": ["type-is@2.0.1", "", { "dependencies": { "content-type": "^1.0.5", "media-typer": "^1.1.0", "mime-types": "^3.0.0" } }, "sha512-OZs6gsjF4vMp32qrCbiVSkrFmXtG/AZhY3t0iAMrMBiAZyV9oALtXO8hsrHbMXF9x6L3grlFuwW2oAz7cav+Gw=="],
 
-    "typescript": ["typescript@5.8.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ=="],
+    "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
     "undici": ["undici@6.22.0", "", {}, "sha512-hU/10obOIu62MGYjdskASR3CUAiYaFTtC9Pa6vHyf//mAipSvSQg6od2CnJswq7fvzNS3zJhxoRkgNVaHurWKw=="],
 
