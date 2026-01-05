@@ -6,7 +6,7 @@
 2. Install dependencies: `bun install`
 3. Run development server: `bun run dev`
 
-## Development
+## Guidelines
 
 - Use Bun instead of Node.js/npm
 - Follow TypeScript best practices
