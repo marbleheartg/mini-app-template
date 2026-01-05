@@ -1,10 +1,16 @@
 import { Inter } from "next/font/google"
 import { ReactNode } from "react"
 import "./globals.css"
-import { MINIAPP, MINIAPP_DESCRIPTION, MINIAPP_TITLE } from "./lib/constants"
+import { MINIAPP, MINIAPP_METADATA } from "./lib/constants"
 
-const inter = Inter({
-  variable: "--inter",
+const mainFont = Inter({
+  variable: "--mainFont",
+  weight: "variable",
+  subsets: ["latin"],
+})
+
+const titleFont = Inter({
+  variable: "--titleFont",
   weight: "variable",
   subsets: ["latin"],
 })
@@ -19,11 +25,11 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://auth.farcaster.xyz" />
         <link rel="icon" type="image/png" sizes="256x256" href="/images/og/icon.png" />
-        <meta name="fc:miniapp" content={JSON.stringify(MINIAPP)} />
-        <meta name="description" content={MINIAPP_DESCRIPTION} />
-        <title>{MINIAPP_TITLE}</title>
+        <meta name="fc:miniapp" content={JSON.stringify(MINIAPP_METADATA)} />
+        <meta name="description" content={MINIAPP.description} />
+        <title>{MINIAPP.title}</title>
       </head>
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+      <body className={`${mainFont.variable} ${titleFont.variable} antialiased`}>{children}</body>
     </html>
   )
 }

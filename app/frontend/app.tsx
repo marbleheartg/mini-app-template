@@ -1,18 +1,21 @@
 import clientErrorHandling from "@/lib/clientErrorsReporting"
 import Providers from "@/lib/providers"
-import { store, updateStore } from "@/lib/store"
+import { updateStore } from "@/lib/store"
+import preloadImages from "@/lib/utils/preloadImages"
 import sdk from "@farcaster/miniapp-sdk"
 import { useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router"
+import Background from "./components/Background"
 import Header from "./components/Header"
 import Menu from "./components/Menu"
 import Claim from "./pages/Claim"
 import Home from "./pages/Home"
 import Promote from "./pages/Promote"
 
-export default function App() {
-  const { user, client } = store()
+const pngImgSrcs: string[] = []
+const svgImgSrcs: string[] = []
 
+export default function App() {
   useEffect(() => {
     clientErrorHandling()
     ;(async function () {
@@ -20,17 +23,19 @@ export default function App() {
         const { user, client } = await sdk.context
         const capabilities = await sdk.getCapabilities()
         updateStore({ user, client, capabilities })
-
-        // const preloadImage = new Image()
-        // preloadImage.src = "/images/global/bg.svg"
-        // preloadImage.onload = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
-        // preloadImage.onerror = async () => await sdk.actions.ready({ disableNativeGestures: true }).catch(() => { })
       } catch {}
 
-      await sdk.actions.ready({ disableNativeGestures: true }).catch(() => {})
+      try {
+        await preloadImages([...pngImgSrcs.map(src => `${src}.png`), ...svgImgSrcs.map(src => `${src}.svg`)].map(src => `/images/${src}`))
+      } catch {
+      } finally {
+        await sdk.actions.ready({ disableNativeGestures: true }).catch(() => {})
+      }
 
-      const { token: session } = await sdk.quickAuth.getToken()
-      updateStore({ session })
+      try {
+        const { token: session } = await sdk.quickAuth.getToken()
+        updateStore({ session })
+      } catch {}
     })()
   }, [])
 
@@ -40,24 +45,14 @@ export default function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Claim />} />
             <Route path="/promote" element={<Promote />} />
-            <Route path="/claim" element={<Claim />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
           <Menu />
+          <Background />
         </BrowserRouter>
-        {/* <img
-          src="/images/global/bg.svg"
-          alt="bg"
-          className={clsx("fixed top-0 left-0 w-screen h-screen object-fill -z-10")}
-        /> */}
       </Providers>
-
-      {/* {process.env.NODE_ENV === "development" && (
-        <pre className="fixed bottom-0 inset-x-0 p-5 pb-15 rounded-t-4xl text-xs text-wrap bg-amber-200/50 pointer-events-none">
-          <div>{JSON.stringify({ user, client, ua: navigator.userAgent }, null, 2)}</div>
-        </pre>
-      )} */}
     </div>
   )
 }

@@ -16,6 +16,23 @@
 }
 
 @layer components {
+  .glass {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+      inset 0 0 0 0.5px rgba(255, 255, 255, 0.3),
+      0 8px 30px rgba(0, 0, 0, 0.45);
+  }
+
+  .menu-item {
+    transition: all 0.2s ease;
+  }
+
+  .menu-item--active {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+  }
 }
 
 @layer base {
@@ -24,12 +41,12 @@
   }
 
   body {
-    @apply bg-black font-medium text-white;
-    @apply font-(family-name:--inter);
+    @apply bg-black text-white lowercase;
+    @apply font-(family-name:--mainFont);
   }
 
   h1 {
-    @apply font-bold text-xl pointer-events-none;
+    @apply font-(family-name:--titleFont) pointer-events-none;
   }
 
   img {
@@ -37,11 +54,23 @@
   }
 
   button {
-    @apply bg-white text-black px-3 py-1 pb-1.5 cursor-pointer rounded-lg;
+    @apply border border-white/80 py-1 pb-1.5 px-2 font-bold cursor-pointer rounded-lg;
+  }
+
+  textarea {
+    @apply bg-white text-black border rounded-lg outline-none p-1.5 resize-none;
   }
 
   input[type="text"] {
-    @apply bg-white text-black w-full border px-3 py-2 pb-2.5 rounded-lg;
+    @apply bg-white text-black border rounded-lg outline-none pl-1;
+  }
+
+  input[type="search"] {
+    @apply bg-white text-black border rounded-lg outline-none pl-1;
+  }
+
+  input[type="number"] {
+    @apply bg-white text-black border rounded-lg outline-none pl-1;
   }
 
   input[type="search"]::-webkit-search-decoration,
