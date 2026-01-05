@@ -1,10 +1,16 @@
 import { defineConfig } from "@wagmi/cli";
 import { react } from "@wagmi/cli/plugins";
 import { Abi } from "viem";
+
 import contractAbi from "./artifacts/contracts/Contract.sol/Contract.json";
 
+// const contractAbi = await import(
+//   `./artifacts/contracts/${"Contract"}.sol/${"Contract"}.json`,
+//   { assert: { type: "json" } }
+// );
+
 export default defineConfig({
-  out: "artifacts/contracts/types/generated.ts",
+  out: `abi/contractAbi.ts`,
   contracts: [
     {
       name: "Contract",
