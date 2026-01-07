@@ -8,13 +8,12 @@ export default function Claim() {
     <main>
       <div
         className={clsx(
-          "fixed top-35 bottom-35 inset-x-1/12 px-1 pt-3.5 pb-3 z-30",
+          "fixed top-30 bottom-30 inset-x-1/12 px-1 pt-3.5 pb-3 z-30",
           "flex flex-col items-center",
-          "rounded-4xl",
-          "bg-white/10 glass",
+          "bg-white/10 glass text-(--accent) rounded-4xl",
         )}
       >
-        Claim page
+        Claim
       </div>
       {/* {process.env.NODE_ENV === "development" && (
         <pre className={clsx("fixed bottom-0 inset-x-0 p-5 pb-15 rounded-t-4xl", "text-xs text-wrap bg-amber-200/50 pointer-events-none z-50")}>

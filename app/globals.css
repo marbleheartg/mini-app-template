@@ -9,9 +9,18 @@
 } */
 
 @theme {
-  --accent: oklch(0 0 0);
-  --bg: oklch(0 0 0);
-  --border: oklch(0 0 0);
+  /* dark */
+  --bg: oklch(0.3211 0 0);
+  --surface: oklch(from var(--bg) calc(l * 1.25) c h);
+  --accent: oklch(from var(--surface) calc(l + 0.55) calc(c * 1.4) h);
+  --border: oklch(from var(--surface) calc(l + 0.1) c h);
+
+  /* light */
+  /* --bg: oklch(0.683 0 0);
+  --surface: oklch(from var(--bg) calc(l * 0.7) c h);
+  --accent: oklch(from var(--surface) calc(l - 0.2) calc(c * 1.2) h);
+  --border: oklch(from var(--surface) calc(l - 0.08) c h); */
+
   /* --8bit: "8bitoperator JVE", serif; */
 }
 

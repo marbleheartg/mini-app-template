@@ -7,6 +7,7 @@ const MINIAPP = {
   primaryCategory:
     "games, social, finance, utility, productivity, health-fitness, news-media, music, shopping, education, developer-tools, entertainment, art-creativity",
   webhookUrl: "webhookUrl",
+  bgColor: "#ffffff",
 }
 
 const MINIAPP_METADATA = {
@@ -20,7 +21,7 @@ const MINIAPP_METADATA = {
       url: `https://${process.env.NEXT_PUBLIC_HOST}`,
       name: MINIAPP.title,
       splashImageUrl: `https://${process.env.NEXT_PUBLIC_HOST}/images/og/splash.png`,
-      splashBackgroundColor: "#ffffff",
+      splashBackgroundColor: MINIAPP.bgColor,
     },
   },
 }

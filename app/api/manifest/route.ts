@@ -12,11 +12,10 @@ export async function GET() {
       iconUrl: `https://${NEXT_PUBLIC_HOST}/images/og/icon.png`,
       homeUrl: `https://${NEXT_PUBLIC_HOST}`,
       splashImageUrl: `https://${NEXT_PUBLIC_HOST}/images/og/splash.png`,
-      splashBackgroundColor: "#ffffff",
+      splashBackgroundColor: MINIAPP.bgColor,
       subtitle: MINIAPP.description,
       description: MINIAPP.description,
-      primaryCategory:
-        "games, social, finance, utility, productivity, health-fitness, news-media, music, shopping, education, developer-tools, entertainment, art-creativity",
+      primaryCategory: MINIAPP.primaryCategory,
       tagline: MINIAPP.description,
       ogTitle: MINIAPP.title,
       ogDescription: MINIAPP.description,

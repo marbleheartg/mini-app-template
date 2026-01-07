@@ -8,7 +8,7 @@ const Background = () => {
         {/* <NextImage src={"/images/bg.svg"} fill alt="bg" priority /> */}
       </div>
 
-      <div className={clsx("fixed top-0 left-0 w-screen h-screen -z-20 pointer-events-none", "bg-linear-to-br from-(--bg) to-(--bg)/70")}></div>
+      <div className={clsx("fixed top-0 left-0 w-screen h-screen -z-20", "bg-linear-to-br from-(--bg) to-(--bg)/70", "pointer-events-none")}></div>
     </div>
   )
 }
