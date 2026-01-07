@@ -17,11 +17,8 @@ A production-ready template for building Farcaster Mini Apps with Next.js 16, Re
 # Install dependencies
 bun install
 
-# Expose public URL for testing
-bun run tunnel
-
 # Set environment variables
-echo "NEXT_PUBLIC_HOST=TUNNEL_LINK" > .env
+echo "NEXT_PUBLIC_HOST=TUNNEL_LINK" > .env.local
 
 # Run development server
 bun run dev
@@ -37,7 +34,6 @@ bun run dev
 - `bun run build` - Build for production
 - `bun run start` - Start production server
 - `bun run lint` - Run ESLint
-- `bun run tunnel` - Start Cloudflare tunnel
 
 ## Project Structure
 
