@@ -11,10 +11,10 @@ describe("Contract", async function () {
 
   const [owner, otherAccount] = await viem.getWalletClients();
 
+  const { contract } = await ignition.deploy(ContractModule);
+
   describe("Proxy interaction", function () {
     it("Should be usable via proxy", async function () {
-      const { contract } = await ignition.deploy(ContractModule);
-
       assert.equal(
         getAddress(await contract.read.owner()),
         getAddress(owner.account.address),
