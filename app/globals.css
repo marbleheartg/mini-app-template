@@ -10,10 +10,15 @@
 
 @theme {
   /* dark */
-  --bg: oklch(0.3211 0 0);
-  --surface: oklch(from var(--bg) calc(l * 1.25) c h);
-  --accent: oklch(from var(--surface) calc(l + 0.55) calc(c * 1.4) h);
+  --bg: oklch(0.4217 0.0701 231.59);
+
+  --bg-surface: oklch(from var(--bg) calc(l * 1.25) c h);
+  --bg-border: oklch(from var(--bg-surface) calc(l + 0.1) c h);
+
+  --surface: oklch(from var(--bg) calc(l * 1.6) c h);
   --border: oklch(from var(--surface) calc(l + 0.1) c h);
+
+  --accent: oklch(from var(--surface) calc(l + 0.4) calc(c * 1.4) h);
 
   /* light */
   /* --bg: oklch(0.683 0 0);
@@ -50,12 +55,12 @@
   }
 
   body {
-    @apply bg-black text-white lowercase;
+    @apply bg-(--bg) text-(--accent) lowercase;
     @apply font-(family-name:--mainFont);
   }
 
   h1 {
-    @apply font-(family-name:--titleFont) pointer-events-none;
+    @apply font-(family-name:--titleFont) font-black pointer-events-none;
   }
 
   img {
@@ -63,23 +68,23 @@
   }
 
   button {
-    @apply border border-white/80 py-1 pb-1.5 px-2 font-bold cursor-pointer rounded-lg;
+    @apply border border-(--border) pt-1 pb-1.5 px-2.5 font-bold cursor-pointer rounded-lg;
   }
 
   textarea {
-    @apply bg-white text-black border rounded-lg outline-none p-1.5 resize-none;
+    @apply bg-(--surface)/10 text-(--accent) border border-(--border) rounded-lg outline-none p-2 pt-1.5 resize-none;
   }
 
   input[type="text"] {
-    @apply bg-white text-black border rounded-lg outline-none pl-1;
+    @apply bg-(--surface)/10 text-(--accent) border border-(--border) rounded-lg outline-none p-2 pt-1.5;
   }
 
   input[type="search"] {
-    @apply bg-white text-black border rounded-lg outline-none pl-1;
+    @apply bg-(--surface)/10 text-(--accent) border border-(--border) rounded-lg outline-none p-2 pt-1.5;
   }
 
   input[type="number"] {
-    @apply bg-white text-black border rounded-lg outline-none pl-1;
+    @apply bg-(--surface)/10 text-(--accent) border border-(--border) rounded-lg outline-none p-2 pt-1.5;
   }
 
   input[type="search"]::-webkit-search-decoration,
@@ -116,7 +121,7 @@
     appearance: none;
     width: 14px;
     height: 14px;
-    background: white;
+    background: var(--accent);
     border-radius: 50%;
     cursor: pointer;
     margin-top: -4.5px;
@@ -131,7 +136,7 @@
   input[type="range"]::-moz-range-thumb {
     width: 14px;
     height: 14px;
-    background: white;
+    background: var(--accent);
     border-radius: 50%;
     cursor: pointer;
     border: none;

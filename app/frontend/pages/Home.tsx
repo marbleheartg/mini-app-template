@@ -13,7 +13,7 @@ export default function Home() {
           "bg-white/10 glass text-(--accent) rounded-4xl",
         )}
       >
-        Home
+        <h1>Home</h1>
       </div>
       {/* {process.env.NODE_ENV === "development" && (
         <pre className={clsx("fixed bottom-0 inset-x-0 p-5 pb-15 rounded-t-4xl", "text-xs text-wrap bg-amber-200/50 pointer-events-none z-50")}>

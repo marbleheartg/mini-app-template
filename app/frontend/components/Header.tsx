@@ -37,7 +37,7 @@ const Header = () => {
           if (store.getState().capabilities?.includes("haptics.impactOccurred")) sdk.haptics.impactOccurred("medium")
         }}
       >
-        <div className={clsx("relative aspect-square w-8", "border-2 border-(--border) rounded-full", "cursor-pointer")}>
+        <div className={clsx("relative aspect-square w-8", "border-2 border-(--bg-border) rounded-full", "cursor-pointer")}>
           <NextImage
             src={user?.pfpUrl || "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=288/https%3A%2F%2Ffarcaster.xyz%2Favatar.png"}
             fill
