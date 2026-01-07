@@ -4,11 +4,6 @@ import { Abi } from "viem";
 
 import contractAbi from "./artifacts/contracts/Contract.sol/Contract.json";
 
-// const contractAbi = await import(
-//   `./artifacts/contracts/${"Contract"}.sol/${"Contract"}.json`,
-//   { assert: { type: "json" } }
-// );
-
 export default defineConfig({
   out: `abi/contractAbi.ts`,
   contracts: [
