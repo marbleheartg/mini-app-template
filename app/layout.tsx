@@ -9,11 +9,11 @@ const mainFont = DM_Sans({
   subsets: ["latin"],
 })
 
-const titleFont = DM_Sans({
-  variable: "--titleFont",
-  weight: "variable",
-  subsets: ["latin"],
-})
+// const titleFont = DM_Sans({
+//   variable: "--titleFont",
+//   weight: "variable",
+//   subsets: ["latin"],
+// })
 
 export default function RootLayout({
   children,
@@ -29,7 +29,7 @@ export default function RootLayout({
         <meta name="description" content={MINIAPP.description} />
         <title>{MINIAPP.title}</title>
       </head>
-      <body className={`${mainFont.variable} ${titleFont.variable} antialiased`}>{children}</body>
+      <body className={`${mainFont.variable} antialiased`}>{children}</body>
     </html>
   )
 }

@@ -8,9 +8,8 @@ import { BrowserRouter, Route, Routes } from "react-router"
 import Background from "./components/Background"
 import Header from "./components/Header"
 import Menu from "./components/Menu"
-import Claim from "./pages/Claim"
 import Home from "./pages/Home"
-import Promote from "./pages/Promote"
+import Page from "./pages/Page"
 
 const pngImgSrcs: string[] = []
 const svgImgSrcs: string[] = []
@@ -45,8 +44,7 @@ export default function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={<Claim />} />
-            <Route path="/promote" element={<Promote />} />
+            <Route path="/" element={<Page />} />
             <Route path="/home" element={<Home />} />
           </Routes>
           <Menu />

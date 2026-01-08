@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { useConnection } from "wagmi"
 
-export default function Claim() {
+export default function Page() {
   const { address: userAddress } = useConnection()
 
   return (
@@ -12,7 +12,7 @@ export default function Claim() {
         "bg-white/10 glass text-(--accent) rounded-4xl",
       )}
     >
-      <h1>Claim</h1>
+      <h1>Page</h1>
     </main>
   )
 }
