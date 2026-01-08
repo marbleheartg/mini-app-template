@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og"
 import { NextRequest } from "next/server"
 
+const { NEXT_PUBLIC_HOST } = process.env
+
 // async function loadGoogleFont(font: string, text: string) {
 //   const url = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(text)}`
 //   const css = await (await fetch(url)).text()
@@ -17,35 +19,33 @@ import { NextRequest } from "next/server"
 // }
 
 const offsets = {
-  daisy: {
+  param1: {
     top: "0",
     right: "19%",
   },
-  lily: {
+  param2: {
     top: "0",
     right: "10%",
   },
-  rose: {
+  param3: {
     top: "8%",
     right: "10%",
   },
-  sunflower: {
+  param4: {
     top: "0",
     right: "17%",
   },
-  tulip: {
+  param5: {
     top: "5%",
     right: "18%",
   },
 }
 
 export async function GET(req: NextRequest) {
-  const { NEXT_PUBLIC_HOST } = process.env
-  if (!NEXT_PUBLIC_HOST) throw new Error("OGCredentialsNotConfigured")
-
   const { searchParams } = new URL(req.url)
 
-  const flower = searchParams.get("flower") as keyof typeof offsets
+  const param = searchParams.get("param") as keyof typeof offsets
+  const username = searchParams.get("username") || "username"
 
   return new ImageResponse(
     (
@@ -56,59 +56,31 @@ export async function GET(req: NextRequest) {
           flexDirection: "column",
           justifyContent: "center",
           // alignItems: "center",
-
           width: "100%",
           height: "100%",
           padding: "30px 100px",
-
           background: "white",
-          backgroundImage: `url("https://${NEXT_PUBLIC_HOST}/manifest/ogImage.jpg")`,
+          backgroundImage: `url("https://${NEXT_PUBLIC_HOST}/images/og/cast/${param}.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div
           style={{
-            display: "flex",
-            height: "400px",
-            position: "absolute",
-            top: "-4%",
-            left: "21%",
-          }}
-        >
-          <img style={{}} height={400} src={`https://${NEXT_PUBLIC_HOST}/manifest/table.svg`} />
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            height: "800px",
-            position: "absolute",
-            ...offsets[flower],
-          }}
-        >
-          <img style={{ transform: "rotate(20deg)" }} height={800} src={`https://${NEXT_PUBLIC_HOST}/images/flowers/${flower}.png`} />
-        </div>
-
-        {/* <div
-          style={{
             position: "absolute",
             left: "24%",
-
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-
             width: "435px",
             height: "100px",
-
             background: "white",
             fontSize: username.length > 12 ? 44 : 52,
             color: "#733DA2",
           }}
         >
           {"@" + username}
-        </div> */}
+        </div>
       </div>
     ),
     {

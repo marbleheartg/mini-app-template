@@ -8,6 +8,8 @@ const MINIAPP = {
     "games, social, finance, utility, productivity, health-fitness, news-media, music, shopping, education, developer-tools, entertainment, art-creativity",
   webhookUrl: "webhookUrl",
   bgColor: "#ffffff",
+  requiredCapabilities: ["actions.ready"],
+  requiredChains: ["eip155:8453"],
 }
 
 const MINIAPP_METADATA = {

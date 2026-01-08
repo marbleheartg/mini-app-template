@@ -2,7 +2,6 @@ import { MINIAPP } from "@/lib/constants"
 import { NextResponse } from "next/server"
 
 const { NEXT_PUBLIC_HOST } = process.env
-if (!NEXT_PUBLIC_HOST) throw new Error("ManifestCredentialsNotConfigured")
 
 export async function GET() {
   return NextResponse.json({
@@ -24,8 +23,8 @@ export async function GET() {
       heroImageUrl: `https://${NEXT_PUBLIC_HOST}/images/og/hero.png`,
       canonicalDomain: NEXT_PUBLIC_HOST,
       screenshotUrls: [`https://${NEXT_PUBLIC_HOST}/images/og/screenshot.png`],
-      requiredChains: ["eip155:8453"],
-      requiredCapabilities: ["actions.ready"],
+      requiredChains: MINIAPP.requiredChains,
+      requiredCapabilities: MINIAPP.requiredCapabilities,
       tags: MINIAPP.tags,
       webhookUrl: MINIAPP.webhookUrl,
     },
