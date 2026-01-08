@@ -1,15 +1,15 @@
-import { Inter } from "next/font/google"
+import { DM_Sans } from "next/font/google"
 import { ReactNode } from "react"
 import "./globals.css"
 import { MINIAPP, MINIAPP_METADATA } from "./lib/constants"
 
-const mainFont = Inter({
+const mainFont = DM_Sans({
   variable: "--mainFont",
   weight: "variable",
   subsets: ["latin"],
 })
 
-const titleFont = Inter({
+const titleFont = DM_Sans({
   variable: "--titleFont",
   weight: "variable",
   subsets: ["latin"],
