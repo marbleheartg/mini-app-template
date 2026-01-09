@@ -1,15 +1,6 @@
 @import "tailwindcss";
 
-/* @font-face {
-  font-family: "8bitoperator JVE";
-  src: url("/fonts/8bitoperator-JVE.woff2") format("woff2"), url("/fonts/8bitoperator-JVE.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} */
-
 @theme {
-  /* dark */
   --bg: oklch(0.3 0.05 30);
 
   --bg-surface: oklch(from var(--bg) calc(l * 1.25) c h);
@@ -19,15 +10,7 @@
   --border: oklch(from var(--surface) calc(l + 0.1) c h);
 
   --accent: oklch(from var(--surface) calc(l + 0.4) calc(c * 1.4) h);
-  --heading: oklch(from var(--surface) calc(l + 0.5) calc(c * 1.4) h);
-
-  /* light */
-  /* --bg: oklch(0.683 0 0);
-  --surface: oklch(from var(--bg) calc(l * 0.7) c h);
-  --accent: oklch(from var(--surface) calc(l - 0.2) calc(c * 1.2) h);
-  --border: oklch(from var(--surface) calc(l - 0.08) c h); */
-
-  /* --8bit: "8bitoperator JVE", serif; */
+  --heading: oklch(from var(--surface) 1 calc(c * 1.4) h);
 
   --animate-orb-float-1: orb-float-1 20s ease-in-out infinite;
   --animate-orb-float-2: orb-float-2 25s ease-in-out infinite;
