@@ -2,14 +2,11 @@
 
 @theme {
   --bg: oklch(0.3 0.05 30);
-
   --bg-surface: oklch(from var(--bg) calc(l * 1.25) c h);
   --bg-border: oklch(from var(--bg-surface) calc(l + 0.1) c h);
-
   --surface: oklch(from var(--bg) calc(l * 1.6) c h);
   --border: oklch(from var(--surface) calc(l + 0.1) c h);
-
-  --accent: oklch(from var(--surface) calc(l + 0.4) calc(c * 1.4) h);
+  --text: oklch(from var(--surface) calc(l + 0.4) calc(c * 1.4) h);
   --heading: oklch(from var(--surface) 1 calc(c * 1.4) h);
 
   --animate-orb-float-1: orb-float-1 20s ease-in-out infinite;
@@ -112,7 +109,7 @@
   body {
     /* font-optical-sizing: auto; */
     font-variation-settings: "opsz" 9;
-    @apply font-(family-name:--mainFont) text-(--accent) leading-relaxed text-xs lowercase bg-(--bg);
+    @apply font-(family-name:--mainFont) text-(--text) leading-relaxed text-xs lowercase bg-(--bg);
   }
 
   h1 {
@@ -130,19 +127,19 @@
   }
 
   textarea {
-    @apply bg-(--surface)/10 text-(--accent) border border-(--border) rounded-lg outline-none p-2 pt-1.5 resize-none;
+    @apply bg-(--surface)/10 text-(--text) border border-(--border) rounded-lg outline-none p-2 pt-1.5 resize-none;
   }
 
   input[type="text"] {
-    @apply bg-(--surface)/10 text-(--accent) border border-(--border) rounded-lg outline-none p-2 pt-1.5;
+    @apply bg-(--surface)/10 text-(--text) border border-(--border) rounded-lg outline-none p-2 pt-1.5;
   }
 
   input[type="search"] {
-    @apply bg-(--surface)/10 text-(--accent) border border-(--border) rounded-lg outline-none p-2 pt-1.5;
+    @apply bg-(--surface)/10 text-(--text) border border-(--border) rounded-lg outline-none p-2 pt-1.5;
   }
 
   input[type="number"] {
-    @apply bg-(--surface)/10 text-(--accent) border border-(--border) rounded-lg outline-none p-2 pt-1.5;
+    @apply bg-(--surface)/10 text-(--text) border border-(--border) rounded-lg outline-none p-2 pt-1.5;
   }
 
   input[type="search"]::-webkit-search-decoration,
@@ -179,7 +176,7 @@
     appearance: none;
     width: 14px;
     height: 14px;
-    background: var(--accent);
+    background: var(--text);
     border-radius: 50%;
     cursor: pointer;
     margin-top: -4.5px;
@@ -194,7 +191,7 @@
   input[type="range"]::-moz-range-thumb {
     width: 14px;
     height: 14px;
-    background: var(--accent);
+    background: var(--text);
     border-radius: 50%;
     cursor: pointer;
     border: none;

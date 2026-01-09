@@ -8,7 +8,7 @@ const Background = () => {
       <div
         className={clsx(
           "absolute w-[500px] h-[500px] rounded-full",
-          "bg-linear-to-br from-(--heading)/20 via-(--accent)/15 to-transparent",
+          "bg-linear-to-br from-(--heading)/20 via-(--text)/15 to-transparent",
           "blur-3xl animate-orb-float-1",
         )}
         style={{ top: "-10%", left: "-15%" }}
@@ -16,7 +16,7 @@ const Background = () => {
       <div
         className={clsx(
           "absolute w-[400px] h-[400px] rounded-full",
-          "bg-linear-to-br from-(--accent)/15 via-(--surface)/10 to-transparent",
+          "bg-linear-to-br from-(--text)/15 via-(--surface)/10 to-transparent",
           "blur-3xl animate-orb-float-2",
         )}
         style={{ top: "40%", right: "-20%" }}

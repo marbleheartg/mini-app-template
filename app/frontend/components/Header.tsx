@@ -33,7 +33,7 @@ const Header = () => {
 
       <NavLink to="/home" onClick={() => sdk.haptics.impactOccurred("medium")}>
         <div className={clsx("relative flex items-center", "bg-white/10 glass rounded-2xl", "h-8", "pl-2 pr-[35px]")}>
-          <div className="text-base text-(--accent) pb-px">{user?.displayName}</div>
+          <div className="text-base text-(--heading) pb-px">{user ? user.displayName : "nickname"}</div>
 
           <div className={clsx("absolute right-0 top-0 aspect-square w-[30px]", "border-2 border-(--bg-border) rounded-full", "cursor-pointer")}>
             <NextImage src={user?.pfpUrl || "https://placekittens.com/32/32"} fill alt="pfp" className="rounded-full" priority />
