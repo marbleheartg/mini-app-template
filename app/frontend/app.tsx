@@ -8,8 +8,10 @@ import { BrowserRouter, Route, Routes } from "react-router"
 import Background from "./components/Background"
 import Header from "./components/Header"
 import Menu from "./components/Menu"
+import { ToastProvider } from "./components/ui"
 import Home from "./pages/Home"
 import Page from "./pages/Page"
+import UIKit from "./pages/UIKit"
 
 const pngImgSrcs: string[] = []
 const svgImgSrcs: string[] = []
@@ -41,15 +43,18 @@ export default function App() {
   return (
     <div onDragStart={e => e.preventDefault()}>
       <Providers>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Page />} />
-            <Route path="/home" element={<Home />} />
-          </Routes>
-          <Menu />
-          <Background />
-        </BrowserRouter>
+        <ToastProvider>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Page />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/ui" element={<UIKit />} />
+            </Routes>
+            <Menu />
+            <Background />
+          </BrowserRouter>
+        </ToastProvider>
       </Providers>
 
       {/* {process.env.NODE_ENV === "development" && (
