@@ -13,14 +13,7 @@ const wagmiConfig = createConfig({
 })
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 30,
-      refetchInterval: 5000,
-      // refetchOnMount: false,
-      // refetchOnWindowFocus: false,
-    },
-  },
+  defaultOptions: { queries: { staleTime: 1000 * 60 * 30 } },
 })
 
 export default function Providers({ children }: { children: React.ReactNode }) {
