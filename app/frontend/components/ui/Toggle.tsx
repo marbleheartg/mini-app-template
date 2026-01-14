@@ -2,7 +2,7 @@ import sdk from "@farcaster/miniapp-sdk"
 import clsx from "clsx"
 import { type InputHTMLAttributes, forwardRef } from "react"
 
-interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onChange"> {
+interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "size"> {
   checked?: boolean
   onChange?: (checked: boolean) => void
   size?: "sm" | "md"

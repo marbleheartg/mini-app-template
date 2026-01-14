@@ -41,7 +41,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
 
 Accordion.displayName = "Accordion"
 
-interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
+interface AccordionItemProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   id: string
   title: ReactNode
   subtitle?: string

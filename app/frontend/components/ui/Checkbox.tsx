@@ -2,7 +2,7 @@ import sdk from "@farcaster/miniapp-sdk"
 import clsx from "clsx"
 import { type InputHTMLAttributes, forwardRef, type ReactNode } from "react"
 
-interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onChange"> {
+interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "size"> {
   checked?: boolean
   onChange?: (checked: boolean) => void
   label?: ReactNode

@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { type ReactNode, useState, useRef, useEffect } from "react"
+import { type ReactNode, useState, useRef, useEffect, useCallback } from "react"
 
 type TooltipPosition = "top" | "bottom" | "left" | "right"
 
@@ -16,9 +16,9 @@ export function Tooltip({ content, children, position = "top", delay = 200, clas
   const [coords, setCoords] = useState({ x: 0, y: 0 })
   const triggerRef = useRef<HTMLDivElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  const updatePosition = () => {
+  const updatePosition = useCallback(() => {
     if (!triggerRef.current || !tooltipRef.current) return
 
     const trigger = triggerRef.current.getBoundingClientRect()
@@ -52,7 +52,7 @@ export function Tooltip({ content, children, position = "top", delay = 200, clas
     y = Math.max(8, Math.min(y, window.innerHeight - tooltip.height - 8))
 
     setCoords({ x, y })
-  }
+  }, [position])
 
   const handleMouseEnter = () => {
     timeoutRef.current = setTimeout(() => {
@@ -70,8 +70,15 @@ export function Tooltip({ content, children, position = "top", delay = 200, clas
   useEffect(() => {
     if (visible) {
       updatePosition()
+      window.addEventListener("resize", updatePosition)
+      window.addEventListener("scroll", updatePosition, true)
     }
-  }, [visible])
+
+    return () => {
+      window.removeEventListener("resize", updatePosition)
+      window.removeEventListener("scroll", updatePosition, true)
+    }
+  }, [visible, updatePosition])
 
   useEffect(() => {
     return () => {
