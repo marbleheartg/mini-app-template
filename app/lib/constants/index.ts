@@ -4,9 +4,9 @@ const MINIAPP = {
   title: "title",
   description: "description",
   tags: ["1", "2", "3", "4", "5"],
-  primaryCategory:
-    "games, social, finance, utility, productivity, health-fitness, news-media, music, shopping, education, developer-tools, entertainment, art-creativity",
-  webhookUrl: "webhookUrl",
+  primaryCategory: "developer-tools",
+  // "games, social, finance, utility, productivity, health-fitness, news-media, music, shopping, education, developer-tools, entertainment, art-creativity",
+  webhookUrl: "https://api.neynar.com/f/app/8ebe7bf9-a1da-4bfb-9fa9-0c52a7aec475/event",
   bgColor: "#ffffff",
   requiredCapabilities: ["actions.ready"],
   requiredChains: ["eip155:8453"],
