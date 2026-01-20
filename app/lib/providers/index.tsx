@@ -12,9 +12,7 @@ const wagmiConfig = createConfig({
   // multiInjectedProviderDiscovery: false,
 })
 
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 1000 * 60 * 30 } },
-})
+const queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 1000 * 60 * 30 } } })
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (

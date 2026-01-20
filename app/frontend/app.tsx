@@ -27,7 +27,7 @@ export default function App() {
       } catch {}
 
       try {
-        await preloadImages([...pngImgSrcs.map(src => `${src}.png`), ...svgImgSrcs.map(src => `${src}.svg`)].map(src => `/images/${src}`))
+        await preloadImages([...pngImgSrcs.map((src) => `${src}.png`), ...svgImgSrcs.map((src) => `${src}.svg`)].map((src) => `/images/${src}`))
       } catch {
       } finally {
         await sdk.actions.ready({ disableNativeGestures: true }).catch(() => {})
@@ -41,7 +41,7 @@ export default function App() {
   }, [])
 
   return (
-    <div onDragStart={e => e.preventDefault()}>
+    <div onDragStart={(e) => e.preventDefault()}>
       <Providers>
         <ToastProvider>
           <BrowserRouter>

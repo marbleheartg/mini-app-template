@@ -18,7 +18,7 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   if (pathname.startsWith("/api")) {
-    if (!protectedRoutes.some(route => pathname.startsWith(route))) return NextResponse.next()
+    if (!protectedRoutes.some((route) => pathname.startsWith(route))) return NextResponse.next()
 
     if (!headers.get("origin")?.endsWith(NEXT_PUBLIC_HOST!)) return new Response("Forbidden", { status: 403 })
 

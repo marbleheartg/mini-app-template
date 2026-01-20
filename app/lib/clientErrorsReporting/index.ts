@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export default function clientErrorHandling() {
-  function reportClientError(params: any) {
+  function reportClientError(params: unknown) {
     axios.post("/api/clientError", params)
   }
 

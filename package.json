@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "tunnel": "clear && bun exec 'cloudflared tunnel run --token $TUNNEL_TOKEN'",
     "dev": "clear && rm -rf .next && next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -27,13 +28,13 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
-    "typescript": "^5.9.3",
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^20.19.27",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "@tailwindcss/postcss": "^4.1.18",
-    "tailwindcss": "^4.1.18",
     "eslint": "^9.39.2",
-    "eslint-config-next": "^16.1.1"
+    "eslint-config-next": "^16.1.1",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   }
 }

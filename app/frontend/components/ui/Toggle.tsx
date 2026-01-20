@@ -45,14 +45,14 @@ const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
         <input ref={ref} type="checkbox" checked={checked} onChange={() => {}} className="sr-only" {...props} />
         <span
           className={clsx(
-            "pointer-events-none inline-block rounded-full bg-white shadow-md",
-            "transform transition-transform duration-200 ease-out",
+            "pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 rounded-full bg-white shadow-md",
+            "transition-transform duration-200 ease-out",
 
             // Size variants
             size === "sm" && "h-4 w-4",
             size === "md" && "h-5 w-5",
 
-            // Position
+            // Horizontal position
             checked ? (size === "sm" ? "translate-x-4" : "translate-x-5") : "translate-x-0.5",
           )}
         />

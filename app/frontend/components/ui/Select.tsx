@@ -1,6 +1,7 @@
 import sdk from "@farcaster/miniapp-sdk"
 import clsx from "clsx"
-import { useState, useRef, useEffect, type ReactNode } from "react"
+import { useEffect, useRef, useState, type ReactNode } from "react"
+import { createPortal } from "react-dom"
 
 interface SelectOption {
   value: string
@@ -21,33 +22,37 @@ interface SelectProps {
   haptic?: boolean
 }
 
-export function Select({
-  options,
-  value,
-  onChange,
-  placeholder = "select...",
-  label,
-  error,
-  disabled = false,
-  className,
-  haptic = true,
-}: SelectProps) {
+export function Select({ options, value, onChange, placeholder = "select...", label, error, disabled = false, className, haptic = true }: SelectProps) {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-  const selectedOption = options.find(opt => opt.value === value)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const [position, setPosition] = useState({ top: 0, left: 0, width: 0 })
+  const selectedOption = options.find((opt) => opt.value === value)
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      const target = e.target as Node
+      if (containerRef.current && !containerRef.current.contains(target) && dropdownRef.current && !dropdownRef.current.contains(target)) {
+        setOpen(false)
+      }
+    }
+
+    const handleScroll = (e: Event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setOpen(false)
       }
     }
 
     if (open) {
       document.addEventListener("mousedown", handleClickOutside)
+      document.addEventListener("scroll", handleScroll, { capture: true })
     }
 
-    return () => document.removeEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+      document.removeEventListener("scroll", handleScroll, { capture: true })
+    }
   }, [open])
 
   const handleSelect = (option: SelectOption) => {
@@ -64,6 +69,14 @@ export function Select({
     if (haptic) {
       sdk.haptics.impactOccurred("light")
     }
+    if (!open && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect()
+      setPosition({
+        top: rect.bottom + 4,
+        left: rect.left,
+        width: rect.width,
+      })
+    }
     setOpen(!open)
   }
 
@@ -72,6 +85,7 @@ export function Select({
       {label && <label className="text-[10px] font-bold text-(--text)/80 lowercase tracking-wide">{label}</label>}
       <div ref={containerRef} className="relative">
         <button
+          ref={buttonRef}
           type="button"
           onClick={handleToggle}
           disabled={disabled}
@@ -83,7 +97,7 @@ export function Select({
             "disabled:opacity-50 disabled:cursor-not-allowed",
             open && "border-(--heading)/50",
             error ? "border-red-500/50" : "border-(--border)",
-            !disabled && "hover:border-(--heading)/30"
+            !disabled && "hover:border-(--heading)/30",
           )}
         >
           <span className={clsx("flex items-center gap-2 truncate", !selectedOption && "text-(--text)/50")}>
@@ -103,47 +117,41 @@ export function Select({
           </svg>
         </button>
 
-        {open && (
-          <div
-            className={clsx(
-              "absolute z-50 w-full mt-1",
-              "bg-white/10 glass rounded-xl overflow-hidden",
-              "animate-in fade-in slide-in-from-top-2 duration-200",
-              "max-h-48 overflow-y-auto"
-            )}
-          >
-            {options.map(option => (
-              <div
-                key={option.value}
-                onClick={() => handleSelect(option)}
-                className={clsx(
-                  "flex items-center gap-2 px-3 py-2",
-                  "transition-colors duration-150",
-                  option.disabled
-                    ? "opacity-40 cursor-not-allowed"
-                    : "cursor-pointer hover:bg-white/10",
-                  option.value === value && "bg-white/10 text-(--heading)"
-                )}
-              >
-                {option.icon}
-                <span className="truncate">{option.label}</span>
-                {option.value === value && (
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    className="ml-auto shrink-0 text-(--heading)"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
+        {open &&
+          createPortal(
+            <div
+              ref={dropdownRef}
+              style={{
+                position: "fixed",
+                top: position.top,
+                left: position.left,
+                width: position.width,
+              }}
+              className={clsx("z-50", "bg-(--surface) border border-(--border) rounded-xl overflow-hidden", "animate-in fade-in duration-150", "max-h-48 overflow-y-auto")}
+            >
+              {options.map((option) => (
+                <div
+                  key={option.value}
+                  onClick={() => handleSelect(option)}
+                  className={clsx(
+                    "flex items-center gap-2 px-3 py-2",
+                    "transition-colors duration-150",
+                    option.disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer hover:bg-white/10",
+                    option.value === value && "bg-white/10 text-(--heading)",
+                  )}
+                >
+                  {option.icon}
+                  <span className="truncate">{option.label}</span>
+                  {option.value === value && (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="ml-auto shrink-0 text-(--heading)">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  )}
+                </div>
+              ))}
+            </div>,
+            document.body,
+          )}
       </div>
       {error && <span className="text-[10px] text-red-400">{error}</span>}
     </div>

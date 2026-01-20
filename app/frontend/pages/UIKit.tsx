@@ -193,12 +193,7 @@ export default function UIKit() {
         <CardContent className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <span className="text-[10px] text-(--text)/60 mb-1">checkboxes</span>
-            <Checkbox
-              checked={checkboxValue}
-              onChange={setCheckboxValue}
-              label="enable notifications"
-              description="receive updates about your account"
-            />
+            <Checkbox checked={checkboxValue} onChange={setCheckboxValue} label="enable notifications" description="receive updates about your account" />
             <Checkbox checked disabled label="required option" />
             <Checkbox indeterminate label="partial selection" />
           </div>
@@ -269,8 +264,8 @@ export default function UIKit() {
           <div className="flex flex-col gap-2">
             <span className="text-[10px] text-(--text)/60">removable chips</span>
             <ChipGroup>
-              {chips.map(chip => (
-                <Chip key={chip} removable onRemove={() => setChips(prev => prev.filter(c => c !== chip))}>
+              {chips.map((chip) => (
+                <Chip key={chip} removable onRemove={() => setChips((prev) => prev.filter((c) => c !== chip))}>
                   {chip}
                 </Chip>
               ))}
@@ -279,13 +274,18 @@ export default function UIKit() {
           <div className="flex flex-col gap-2">
             <span className="text-[10px] text-(--text)/60">selectable chips</span>
             <ChipGroup>
-              {["all", "pending", "completed", "failed"].map(chip => (
+              {["all", "pending", "completed", "failed"].map((chip) => (
                 <Chip
                   key={chip}
                   clickable
                   selected={selectedChip === chip}
                   onClick={() => setSelectedChip(chip === selectedChip ? null : chip)}
-                  variant={chip === "completed" ? "success" : chip === "failed" ? "danger" : "default"}
+                  variant={
+                    chip === "completed" ? "success"
+                    : chip === "failed" ?
+                      "danger"
+                    : "default"
+                  }
                 >
                   {chip}
                 </Chip>
@@ -420,12 +420,11 @@ export default function UIKit() {
         <div className="px-4 pb-2">
           <Accordion defaultOpenItems={["faq1"]}>
             <AccordionItem id="faq1" title="what is this ui kit?" subtitle="learn the basics">
-              this is a comprehensive ui kit built with react, tailwind css, and glassmorphism design principles. it includes all the components you
-              need to build beautiful mini apps.
+              this is a comprehensive ui kit built with react, tailwind css, and glassmorphism design principles. it includes all the components you need to build beautiful mini
+              apps.
             </AccordionItem>
             <AccordionItem id="faq2" title="how do i use it?">
-              simply import the components you need from the ui folder and use them in your app. all components support haptic feedback and are
-              optimized for mobile.
+              simply import the components you need from the ui folder and use them in your app. all components support haptic feedback and are optimized for mobile.
             </AccordionItem>
             <AccordionItem id="faq3" title="can i customize it?">
               yes! all components use css variables defined in globals.css. you can easily customize the color scheme by modifying the oklch values.
@@ -484,7 +483,7 @@ export default function UIKit() {
           <Card variant="elevated" padding="sm">
             <span className="text-[10px]">elevated card</span>
           </Card>
-          <Card variant="flat" padding="sm">
+          <Card variant="glass" padding="sm">
             <span className="text-[10px]">flat card</span>
           </Card>
           <Card variant="default" padding="sm" hoverable>

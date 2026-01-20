@@ -1,6 +1,6 @@
 import sdk from "@farcaster/miniapp-sdk"
 import clsx from "clsx"
-import { type HTMLAttributes, forwardRef, useRef, useEffect, useState } from "react"
+import { type HTMLAttributes, forwardRef, useEffect, useRef, useState } from "react"
 
 interface SliderProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   value: number
@@ -17,24 +17,7 @@ interface SliderProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
 }
 
 const Slider = forwardRef<HTMLDivElement, SliderProps>(
-  (
-    {
-      className,
-      value,
-      min = 0,
-      max = 100,
-      step = 1,
-      onChange,
-      disabled = false,
-      showValue = false,
-      label,
-      variant = "default",
-      size = "md",
-      haptic = true,
-      ...props
-    },
-    ref
-  ) => {
+  ({ className, value, min = 0, max = 100, step = 1, onChange, disabled = false, showValue = false, label, variant = "default", size = "md", haptic = true, ...props }, ref) => {
     const percentage = ((value - min) / (max - min)) * 100
     const inputRef = useRef<HTMLInputElement>(null)
     const [isDragging, setIsDragging] = useState(false)
@@ -78,7 +61,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
                   variant === "default" && "text-(--heading)",
                   variant === "success" && "text-emerald-400",
                   variant === "warning" && "text-amber-400",
-                  variant === "danger" && "text-red-400"
+                  variant === "danger" && "text-red-400",
                 )}
               >
                 {value}
@@ -88,24 +71,17 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
         )}
         <div className="relative">
           {/* Track */}
-          <div
-            className={clsx(
-              "absolute inset-y-0 my-auto rounded-full bg-white/10",
-              size === "sm" && "h-1.5",
-              size === "md" && "h-2"
-            )}
-            style={{ width: "100%" }}
-          />
+          <div className={clsx("absolute left-0 right-0 inset-y-0 my-auto rounded-full bg-white/10", size === "sm" && "h-1.5", size === "md" && "h-2")} />
           {/* Filled track */}
           <div
             className={clsx(
-              "absolute inset-y-0 my-auto rounded-full transition-all duration-100",
+              "absolute left-0 inset-y-0 my-auto rounded-full transition-all duration-100",
               size === "sm" && "h-1.5",
               size === "md" && "h-2",
               variant === "default" && "bg-(--heading)/80",
               variant === "success" && "bg-emerald-500",
               variant === "warning" && "bg-amber-500",
-              variant === "danger" && "bg-red-500"
+              variant === "danger" && "bg-red-500",
             )}
             style={{ width: `${percentage}%` }}
           />
@@ -142,13 +118,13 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
               "[&::-moz-range-thumb]:bg-white",
               "[&::-moz-range-thumb]:shadow-lg",
               size === "sm" && "[&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3",
-              size === "md" && "[&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4"
+              size === "md" && "[&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4",
             )}
           />
         </div>
       </div>
     )
-  }
+  },
 )
 
 Slider.displayName = "Slider"
