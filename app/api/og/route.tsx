@@ -1,5 +1,10 @@
+import { NextRequest, NextResponse } from "next/server"
+
+export async function GET(req: NextRequest) {
+  return new NextResponse("Opengraph image", { status: 200 })
+}
+
 // import { ImageResponse } from "next/og"
-// import { NextRequest } from "next/server"
 
 // const { NEXT_PUBLIC_HOST } = process.env
 
@@ -41,12 +46,9 @@
 //   },
 // }
 
-// export async function GET(req: NextRequest) {
 //   const { searchParams } = new URL(req.url)
-
 //   const param = searchParams.get("param") as keyof typeof offsets
 //   const username = searchParams.get("username") || "username"
-
 //   return new ImageResponse(
 //     (
 //       <div
@@ -95,4 +97,3 @@
 //       // ],
 //     },
 //   )
-// }
