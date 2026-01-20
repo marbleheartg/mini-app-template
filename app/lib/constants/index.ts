@@ -1,4 +1,4 @@
-const CA = "0x"
+const CA = "0x980C93A5A5706Cf9B2cEa8E5f4b88070AF1155AA"
 
 const MINIAPP = {
   title: "title",

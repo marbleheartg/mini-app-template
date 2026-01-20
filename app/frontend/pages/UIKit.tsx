@@ -1,5 +1,9 @@
+import { useReadContractCount, useWriteContractIncrement } from "@/lib/abi"
+import { CA } from "@/lib/constants"
 import clsx from "clsx"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { base } from "viem/chains"
+import { useConnect, useConnection, useConnectors, useSwitchChain, useWaitForTransactionReceipt } from "wagmi"
 import {
   Accordion,
   AccordionItem,
@@ -79,8 +83,53 @@ export default function UIKit() {
     { value: "year", label: "year" },
   ]
 
+  const { address: userAddress, isConnected } = useConnection()
+
+  const { data: hash, writeContract, isPending: isWriteIncrementPending } = useWriteContractIncrement()
+  const { isSuccess: isIncrementSuccess, isLoading: isIncrementLoading } = useWaitForTransactionReceipt({ hash })
+
+  const { mutate: connect } = useConnect()
+  const { mutate: switchChain } = useSwitchChain()
+
+  const connectors = useConnectors()
+
+  const { data: count, refetch } = useReadContractCount({
+    address: CA,
+    query: {
+      enabled: !!userAddress && isConnected,
+      refetchInterval: 5000,
+    },
+  })
+
+  useEffect(() => {
+    if (isIncrementSuccess || isIncrementLoading) refetch()
+  }, [isIncrementSuccess, isIncrementLoading, refetch])
+
   return (
     <main className={clsx("flex flex-col gap-5", "px-5 pt-20 pb-26", "overflow-y-scroll overflow-x-hidden")}>
+      {/* Tx Sending Button */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Tx Sending Button</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-3">
+          <div>{count || <Spinner size="xs" />}</div>
+          <Button
+            loading={isWriteIncrementPending || isIncrementLoading}
+            onClick={() => {
+              try {
+                connect({ connector: connectors[0] })
+                switchChain({ chainId: base.id })
+              } catch {}
+
+              writeContract({ address: CA, chainId: base.id })
+            }}
+          >
+            click me
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Buttons */}
       <Card>
         <CardHeader>
