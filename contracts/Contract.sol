@@ -8,6 +8,8 @@ import { OwnableUpgradeable } from "@openzeppelin/contracts-upgradeable/access/O
 contract Contract is Initializable, OwnableUpgradeable {
     error WithdrawFailed();
 
+    uint public count;
+
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
@@ -15,9 +17,19 @@ contract Contract is Initializable, OwnableUpgradeable {
 
     function initialize(address initialOwner) public initializer {
         __Ownable_init(initialOwner);
+        count = 0;
     }
 
     // function initializeV2(...) public reinitializer(2) {}
+
+    function increment() public {
+        count += 1;
+    }
+
+    function decrement() public {
+        require(count > 0, "Counter can't go below 0");
+        count -= 1;
+    }
 
     function withdraw() external onlyOwner {
         (bool success, ) = msg.sender.call{ value: address(this).balance }("");
