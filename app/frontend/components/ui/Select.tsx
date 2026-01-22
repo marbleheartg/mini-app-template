@@ -1,5 +1,6 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
+import { Check, ChevronDown } from "lucide-react"
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { createPortal } from "react-dom"
 
@@ -24,11 +25,16 @@ interface SelectProps {
 
 export function Select({ options, value, onChange, placeholder = "select...", label, error, disabled = false, className, haptic = true }: SelectProps) {
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState({ top: 0, left: 0, width: 0 })
   const selectedOption = options.find((opt) => opt.value === value)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -58,7 +64,11 @@ export function Select({ options, value, onChange, placeholder = "select...", la
   const handleSelect = (option: SelectOption) => {
     if (option.disabled) return
     if (haptic) {
-      sdk.haptics.selectionChanged()
+      try {
+        sdk.haptics.selectionChanged()
+      } catch {
+        // Ignore
+      }
     }
     onChange?.(option.value)
     setOpen(false)
@@ -67,7 +77,11 @@ export function Select({ options, value, onChange, placeholder = "select...", la
   const handleToggle = () => {
     if (disabled) return
     if (haptic) {
-      sdk.haptics.impactOccurred("light")
+      try {
+        sdk.haptics.impactOccurred("light")
+      } catch {
+        // Ignore
+      }
     }
     if (!open && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect()
@@ -81,7 +95,7 @@ export function Select({ options, value, onChange, placeholder = "select...", la
   }
 
   return (
-    <div className={clsx("flex flex-col gap-1.5", className)}>
+    <div className={cn("flex flex-col gap-1.5", className)}>
       {label && <label className="text-[10px] font-bold text-(--text)/80 lowercase tracking-wide">{label}</label>}
       <div ref={containerRef} className="relative">
         <button
@@ -89,7 +103,7 @@ export function Select({ options, value, onChange, placeholder = "select...", la
           type="button"
           onClick={handleToggle}
           disabled={disabled}
-          className={clsx(
+          className={cn(
             "w-full flex items-center justify-between gap-2",
             "bg-(--surface)/10 text-(--text) border rounded-lg",
             "p-2 pt-1.5 text-left",
@@ -100,24 +114,15 @@ export function Select({ options, value, onChange, placeholder = "select...", la
             !disabled && "hover:border-(--heading)/30",
           )}
         >
-          <span className={clsx("flex items-center gap-2 truncate", !selectedOption && "text-(--text)/50")}>
+          <span className={cn("flex items-center gap-2 truncate", !selectedOption && "text-(--text)/50")}>
             {selectedOption?.icon}
             {selectedOption?.label || placeholder}
           </span>
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            className={clsx("shrink-0 transition-transform duration-200 text-(--text)/50", open && "rotate-180")}
-          >
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
+          <ChevronDown className={cn("shrink-0 transition-transform duration-200 text-(--text)/50 w-3.5 h-3.5", open && "rotate-180")} />
         </button>
 
         {open &&
+          mounted &&
           createPortal(
             <div
               ref={dropdownRef}
@@ -127,30 +132,33 @@ export function Select({ options, value, onChange, placeholder = "select...", la
                 left: position.left,
                 width: position.width,
               }}
-              className={clsx("z-50", "bg-(--surface) border border-(--border) rounded-xl overflow-hidden", "animate-in fade-in duration-150", "max-h-48 overflow-y-auto")}
+              className={cn(
+                "z-50",
+                "bg-(--surface) border border-(--border) rounded-xl overflow-hidden shadow-xl",
+                "animate-in fade-in duration-150",
+                "max-h-48 overflow-y-auto"
+              )}
             >
               {options.map((option) => (
                 <div
                   key={option.value}
                   onClick={() => handleSelect(option)}
-                  className={clsx(
+                  className={cn(
                     "flex items-center gap-2 px-3 py-2",
                     "transition-colors duration-150",
                     option.disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer hover:bg-white/10",
-                    option.value === value && "bg-white/10 text-(--heading)",
+                    option.value === value && "bg-white/10 text-(--heading)"
                   )}
                 >
                   {option.icon}
                   <span className="truncate">{option.label}</span>
                   {option.value === value && (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="ml-auto shrink-0 text-(--heading)">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
+                    <Check className="ml-auto shrink-0 text-(--heading) w-3.5 h-3.5" />
                   )}
                 </div>
               ))}
             </div>,
-            document.body,
+            document.body
           )}
       </div>
       {error && <span className="text-[10px] text-red-400">{error}</span>}

@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type HTMLAttributes, forwardRef } from "react"
 
 type CardVariant = "default" | "elevated" | "glass"
@@ -13,7 +13,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({ className, variant = "defa
   return (
     <div
       ref={ref}
-      className={clsx(
+      className={cn(
         "rounded-2xl overflow-hidden",
         "transition-all duration-300 ease-out",
 
@@ -46,7 +46,7 @@ type CardHeaderProps = HTMLAttributes<HTMLDivElement>
 
 const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(({ className, children, ...props }, ref) => {
   return (
-    <div ref={ref} className={clsx("mb-3", className)} {...props}>
+    <div ref={ref} className={cn("mb-3", className)} {...props}>
       {children}
     </div>
   )
@@ -58,7 +58,7 @@ type CardTitleProps = HTMLAttributes<HTMLHeadingElement>
 
 const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(({ className, children, ...props }, ref) => {
   return (
-    <h1 ref={ref} className={clsx(className)} {...props}>
+    <h1 ref={ref} className={cn(className)} {...props}>
       {children}
     </h1>
   )
@@ -70,7 +70,7 @@ type CardContentProps = HTMLAttributes<HTMLDivElement>
 
 const CardContent = forwardRef<HTMLDivElement, CardContentProps>(({ className, children, ...props }, ref) => {
   return (
-    <div ref={ref} className={clsx("text-(--text)", className)} {...props}>
+    <div ref={ref} className={cn("text-(--text)", className)} {...props}>
       {children}
     </div>
   )
@@ -82,7 +82,7 @@ type CardFooterProps = HTMLAttributes<HTMLDivElement>
 
 const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(({ className, children, ...props }, ref) => {
   return (
-    <div ref={ref} className={clsx("mt-4 pt-3 border-t border-(--border)/50", "flex items-center gap-2", className)} {...props}>
+    <div ref={ref} className={cn("mt-4 pt-3 border-t border-(--border)/50", "flex items-center gap-2", className)} {...props}>
       {children}
     </div>
   )

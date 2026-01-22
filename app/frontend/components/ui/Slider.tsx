@@ -1,5 +1,5 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type HTMLAttributes, forwardRef, useEffect, useRef, useState } from "react"
 
 interface SliderProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -48,13 +48,13 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
     }, [])
 
     return (
-      <div ref={ref} className={clsx("flex flex-col gap-2", className)} {...props}>
+      <div ref={ref} className={cn("flex flex-col gap-2", className)} {...props}>
         {(label || showValue) && (
           <div className="flex justify-between items-center">
             {label && <label className="text-[10px] font-bold text-(--text)/80 lowercase tracking-wide">{label}</label>}
             {showValue && (
               <span
-                className={clsx(
+                className={cn(
                   "text-[10px] font-bold tabular-nums",
                   "transition-transform duration-150",
                   isDragging && "scale-110",
@@ -71,10 +71,10 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
         )}
         <div className="relative">
           {/* Track */}
-          <div className={clsx("absolute left-0 right-0 inset-y-0 my-auto rounded-full bg-white/10", size === "sm" && "h-1.5", size === "md" && "h-2")} />
+          <div className={cn("absolute left-0 right-0 inset-y-0 my-auto rounded-full bg-white/10", size === "sm" && "h-1.5", size === "md" && "h-2")} />
           {/* Filled track */}
           <div
-            className={clsx(
+            className={cn(
               "absolute left-0 inset-y-0 my-auto rounded-full transition-all duration-100",
               size === "sm" && "h-1.5",
               size === "md" && "h-2",
@@ -97,7 +97,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
             onMouseDown={handleMouseDown}
             onTouchStart={handleMouseDown}
             disabled={disabled}
-            className={clsx(
+            className={cn(
               "relative w-full appearance-none bg-transparent cursor-pointer",
               "disabled:opacity-50 disabled:cursor-not-allowed",
               size === "sm" && "h-4",

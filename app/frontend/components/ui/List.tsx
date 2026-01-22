@@ -1,12 +1,12 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type HTMLAttributes, forwardRef, type ReactNode } from "react"
 
 interface ListProps extends HTMLAttributes<HTMLDivElement> {}
 
 const List = forwardRef<HTMLDivElement, ListProps>(({ className, children, ...props }, ref) => {
   return (
-    <div ref={ref} className={clsx("flex flex-col", className)} {...props}>
+    <div ref={ref} className={cn("flex flex-col", className)} {...props}>
       {children}
     </div>
   )
@@ -37,7 +37,7 @@ const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
       <div
         ref={ref}
         onClick={handleClick}
-        className={clsx(
+        className={cn(
           "flex items-center gap-3 py-3 px-1",
           divider && "border-b border-(--border)/30 last:border-b-0",
           clickable && "cursor-pointer active:bg-white/5 transition-colors duration-150",

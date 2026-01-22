@@ -1,9 +1,9 @@
 import { useReadContractCount, useWriteContractIncrement } from "@/lib/abi"
 import { CA } from "@/lib/constants"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { useEffect, useState } from "react"
 import { base } from "viem/chains"
-import { useConnect, useConnection, useConnectors, useSwitchChain, useWaitForTransactionReceipt } from "wagmi"
+import { useConnect, useConnectors, useSwitchChain, useWaitForTransactionReceipt } from "wagmi"
 import {
   Accordion,
   AccordionItem,
@@ -83,8 +83,6 @@ export default function UIKit() {
     { value: "year", label: "year" },
   ]
 
-  const { address: userAddress, isConnected } = useConnection()
-
   const { data: hash, writeContract, isPending: isWriteIncrementPending } = useWriteContractIncrement()
   const { isSuccess: isIncrementSuccess, isLoading: isIncrementLoading } = useWaitForTransactionReceipt({ hash })
 
@@ -103,22 +101,19 @@ export default function UIKit() {
   }, [isIncrementSuccess, isIncrementLoading, refetch])
 
   return (
-    <main className={clsx("flex flex-col gap-5", "px-5 pt-20 pb-26", "overflow-y-scroll overflow-x-hidden")}>
+    <main className={cn("flex flex-col gap-5", "px-5 pt-20 pb-26", "overflow-y-scroll overflow-x-hidden")}>
       {/* Tx Sending Button */}
       <Card>
         <CardHeader>
           <CardTitle>Tx Sending Button</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
-          <div>{count || <Spinner size="xs" />}</div>
+          <div>{count !== undefined ? count : <Spinner size="xs" />}</div>
           <Button
             loading={isWriteIncrementPending || isIncrementLoading}
             onClick={() => {
-              try {
-                connect({ connector: connectors[0] })
-                switchChain({ chainId: base.id })
-              } catch {}
-
+              connect({ connector: connectors[0] })
+              switchChain({ chainId: base.id })
               writeContract({ address: CA, chainId: base.id })
             }}
           >
@@ -536,7 +531,7 @@ export default function UIKit() {
             <span className="text-[10px]">elevated card</span>
           </Card>
           <Card variant="glass" padding="sm">
-            <span className="text-[10px]">flat card</span>
+            <span className="text-[10px]">glass card</span>
           </Card>
           <Card variant="default" padding="sm" hoverable>
             <span className="text-[10px]">hoverable card</span>

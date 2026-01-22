@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import NextImage from "next/image"
 import { type HTMLAttributes, forwardRef } from "react"
 
@@ -28,7 +28,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <div
         ref={ref}
-        className={clsx(
+        className={cn(
           "relative inline-flex shrink-0",
           "rounded-full overflow-hidden",
           bordered && "ring-2 ring-(--bg-border)",
@@ -48,7 +48,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           <NextImage src={src} alt={alt} width={dimension} height={dimension} className="rounded-full object-cover" />
         ) : (
           <div
-            className={clsx(
+            className={cn(
               "w-full h-full flex items-center justify-center",
               "bg-(--surface)/50 text-(--heading)",
               "font-bold uppercase",
@@ -65,7 +65,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
 
         {status && (
           <span
-            className={clsx(
+            className={cn(
               "absolute bottom-0 right-0",
               "rounded-full border-2 border-(--bg)",
               size === "xs" && "w-2 h-2",
@@ -98,11 +98,11 @@ const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(({ className, c
   const overflow = max && childArray.length > max ? childArray.length - max : 0
 
   return (
-    <div ref={ref} className={clsx("flex -space-x-2", className)} {...props}>
+    <div ref={ref} className={cn("flex -space-x-2", className)} {...props}>
       {visibleChildren}
       {overflow > 0 && (
         <div
-          className={clsx(
+          className={cn(
             "relative inline-flex items-center justify-center",
             "w-8 h-8 rounded-full",
             "bg-(--surface)/50 text-(--text)",

@@ -1,5 +1,6 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
+import { Loader2 } from "lucide-react"
 import { type ButtonHTMLAttributes, forwardRef, type ReactNode } from "react"
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "danger"
@@ -18,7 +19,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", loading = false, haptic = true, disabled, children, onClick, startIcon, endIcon, ...props }, ref) => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (haptic) {
-        sdk.haptics.impactOccurred("light")
+        try {
+          sdk.haptics.impactOccurred("light")
+        } catch {
+          // Ignore if sdk is not initialized or fails
+        }
       }
       onClick?.(e)
     }
@@ -28,7 +33,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         onClick={handleClick}
-        className={clsx(
+        className={cn(
           "relative inline-flex items-center justify-center",
           "font-bold lowercase tracking-wide",
           "transition-all duration-200 ease-out",
@@ -71,13 +76,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {loading && (
           <span className="absolute inset-0 flex items-center justify-center">
-            <svg className="animate-spin h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-            </svg>
+            <Loader2 className="animate-spin h-3.5 w-3.5" />
           </span>
         )}
-        <span className={clsx("flex items-center gap-2", loading && "opacity-0")}>
+        <span className={cn("flex items-center gap-2", loading && "opacity-0")}>
           {startIcon}
           {children}
           {endIcon}

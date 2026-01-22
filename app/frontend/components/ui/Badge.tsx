@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type HTMLAttributes, forwardRef } from "react"
 
 type BadgeVariant = "default" | "success" | "warning" | "danger" | "info"
@@ -14,7 +14,7 @@ const Badge = forwardRef<HTMLSpanElement, BadgeProps>(({ className, variant = "d
   return (
     <span
       ref={ref}
-      className={clsx(
+      className={cn(
         "inline-flex items-center gap-1.5",
         "font-bold lowercase tracking-wide",
         "rounded-full",
@@ -37,7 +37,7 @@ const Badge = forwardRef<HTMLSpanElement, BadgeProps>(({ className, variant = "d
     >
       {dot && (
         <span
-          className={clsx(
+          className={cn(
             "w-1.5 h-1.5 rounded-full",
             variant === "default" && "bg-(--text)",
             variant === "success" && "bg-emerald-400",

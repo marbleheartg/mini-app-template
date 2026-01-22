@@ -1,5 +1,6 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
+import { Check } from "lucide-react"
 import { type InputHTMLAttributes, forwardRef, type ReactNode } from "react"
 
 interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "size"> {
@@ -31,14 +32,18 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     const handleChange = () => {
       if (disabled) return
       if (haptic) {
-        sdk.haptics.impactOccurred("light")
+        try {
+          sdk.haptics.impactOccurred("light")
+        } catch {
+          // Ignore
+        }
       }
       onChange?.(!checked)
     }
 
     return (
       <label
-        className={clsx(
+        className={cn(
           "inline-flex gap-2.5 cursor-pointer",
           "select-none",
           disabled && "opacity-50 cursor-not-allowed",
@@ -50,14 +55,13 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             ref={ref}
             type="checkbox"
             checked={checked}
-            onChange={() => {}}
+            onChange={handleChange}
             disabled={disabled}
             className="sr-only peer"
             {...props}
           />
           <div
-            onClick={handleChange}
-            className={clsx(
+            className={cn(
               "flex items-center justify-center",
               "rounded-md border-2 transition-all duration-200",
               size === "sm" && "w-4 h-4",
@@ -68,23 +72,17 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             )}
           >
             {checked && !indeterminate && (
-              <svg
-                width={size === "sm" ? 10 : 12}
-                height={size === "sm" ? 10 : 12}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-(--bg) animate-in zoom-in duration-150"
-              >
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
+              <Check
+                className={cn(
+                  "text-(--bg) animate-in zoom-in duration-150",
+                  size === "sm" ? "w-2.5 h-2.5" : "w-3 h-3"
+                )}
+                strokeWidth={3}
+              />
             )}
             {indeterminate && !checked && (
               <div
-                className={clsx(
+                className={cn(
                   "bg-(--bg) rounded-sm",
                   size === "sm" && "w-2 h-0.5",
                   size === "md" && "w-2.5 h-0.5"
@@ -97,7 +95,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           <div className="flex flex-col gap-0.5 pt-0.5">
             {label && (
               <span
-                className={clsx(
+                className={cn(
                   "font-medium text-(--text)",
                   size === "sm" && "text-[10px]",
                   size === "md" && "text-xs"

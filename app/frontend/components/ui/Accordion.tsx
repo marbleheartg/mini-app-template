@@ -1,5 +1,5 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type HTMLAttributes, type ReactNode, createContext, forwardRef, useContext, useState } from "react"
 
 // Accordion Context for managing open state
@@ -30,7 +30,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(({ className, allow
 
   return (
     <AccordionContext.Provider value={{ openItems, toggleItem, allowMultiple }}>
-      <div ref={ref} className={clsx("flex flex-col", className)} {...props}>
+      <div ref={ref} className={cn("flex flex-col", className)} {...props}>
         {children}
       </div>
     </AccordionContext.Provider>
@@ -63,12 +63,12 @@ const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(({ classNam
   }
 
   return (
-    <div ref={ref} className={clsx("border-b border-(--border)/30 last:border-b-0", disabled && "opacity-50", className)} {...props}>
+    <div ref={ref} className={cn("border-b border-(--border)/30 last:border-b-0", disabled && "opacity-50", className)} {...props}>
       <button
         type="button"
         onClick={handleToggle}
         disabled={disabled}
-        className={clsx("w-full flex items-center gap-3 p-3", "text-left transition-colors duration-150", !disabled && "cursor-pointer hover:bg-white/5")}
+        className={cn("w-full flex items-center gap-3 p-3", "text-left transition-colors duration-150", !disabled && "cursor-pointer hover:bg-white/5")}
         aria-expanded={isOpen}
       >
         {icon && <div className="shrink-0 text-(--text)/60">{icon}</div>}
@@ -83,12 +83,12 @@ const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(({ classNam
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
-          className={clsx("shrink-0 text-(--text)/50 transition-transform duration-300", isOpen && "rotate-180")}
+          className={cn("shrink-0 text-(--text)/50 transition-transform duration-300", isOpen && "rotate-180")}
         >
           <polyline points="6 9 12 15 18 9" />
         </svg>
       </button>
-      <div className={clsx("overflow-hidden transition-all duration-300 ease-out", isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0")}>
+      <div className={cn("overflow-hidden transition-all duration-300 ease-out", isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0")}>
         <div className="p-3 text-(--text) text-xs leading-relaxed">{children}</div>
       </div>
     </div>

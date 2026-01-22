@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { useConnection } from "wagmi"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui"
 
@@ -6,7 +6,7 @@ export default function Home() {
   const { address: userAddress } = useConnection()
 
   return (
-    <main className={clsx("flex flex-col gap-5", "px-5 pt-20 pb-26", "overflow-y-scroll overflow-x-hidden")}>
+    <main className={cn("flex flex-col gap-5", "px-5 pt-20 pb-26", "overflow-y-scroll overflow-x-hidden")}>
       <Card>
         <CardHeader>
           <CardTitle>home card</CardTitle>

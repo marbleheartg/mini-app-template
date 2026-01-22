@@ -1,12 +1,12 @@
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 
 const Background = () => {
   return (
     <div className="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
-      <div className={clsx("absolute inset-0", "bg-linear-to-br from-(--bg) via-(--bg) to-(--bg)/70")} />
+      <div className={cn("absolute inset-0", "bg-linear-to-br from-(--bg) via-(--bg) to-(--bg)/70")} />
 
       <div
-        className={clsx(
+        className={cn(
           "absolute w-[500px] h-[500px] rounded-full",
           "bg-linear-to-br from-(--heading)/20 via-(--text)/15 to-transparent",
           "blur-3xl animate-orb-float-1",
@@ -14,7 +14,7 @@ const Background = () => {
         style={{ top: "-10%", left: "-15%" }}
       />
       <div
-        className={clsx(
+        className={cn(
           "absolute w-[400px] h-[400px] rounded-full",
           "bg-linear-to-br from-(--text)/15 via-(--surface)/10 to-transparent",
           "blur-3xl animate-orb-float-2",
@@ -22,7 +22,7 @@ const Background = () => {
         style={{ top: "40%", right: "-20%" }}
       />
       <div
-        className={clsx(
+        className={cn(
           "absolute w-[350px] h-[350px] rounded-full",
           "bg-linear-to-br from-(--surface)/12 via-(--heading)/8 to-transparent",
           "blur-3xl animate-orb-float-3",

@@ -1,5 +1,5 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type InputHTMLAttributes, forwardRef, type ReactNode, createContext, useContext } from "react"
 
 // Radio Group Context
@@ -41,7 +41,7 @@ export function RadioGroup({
     <RadioGroupContext.Provider value={{ value, onChange, name, disabled, size, haptic }}>
       <div
         role="radiogroup"
-        className={clsx(
+        className={cn(
           "flex",
           orientation === "vertical" && "flex-col gap-2.5",
           orientation === "horizontal" && "flex-row gap-4 flex-wrap",
@@ -73,14 +73,18 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const handleChange = () => {
       if (disabled) return
       if (haptic) {
-        sdk.haptics.selectionChanged()
+        try {
+          sdk.haptics.selectionChanged()
+        } catch {
+          // Ignore
+        }
       }
       context.onChange?.(value)
     }
 
     return (
       <label
-        className={clsx(
+        className={cn(
           "inline-flex gap-2.5 cursor-pointer",
           "select-none",
           disabled && "opacity-50 cursor-not-allowed",
@@ -94,26 +98,26 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
             name={context.name}
             value={value}
             checked={checked}
-            onChange={() => {}}
+            onChange={handleChange}
             disabled={disabled}
-            className="sr-only"
+            className="sr-only peer"
             {...props}
           />
           <div
-            onClick={handleChange}
-            className={clsx(
+            className={cn(
               "flex items-center justify-center",
               "rounded-full border-2 transition-all duration-200",
               size === "sm" && "w-4 h-4",
               size === "md" && "w-5 h-5",
               checked
                 ? "border-(--heading)/90"
-                : "bg-white/5 border-(--border) hover:border-(--heading)/50"
+                : "bg-white/5 border-(--border) hover:border-(--heading)/50",
+              "peer-focus-visible:ring-2 peer-focus-visible:ring-(--heading)/50"
             )}
           >
             {checked && (
               <div
-                className={clsx(
+                className={cn(
                   "rounded-full bg-(--heading)/90",
                   "animate-in zoom-in duration-150",
                   size === "sm" && "w-2 h-2",
@@ -127,7 +131,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
           <div className="flex flex-col gap-0.5 pt-0.5">
             {label && (
               <span
-                className={clsx(
+                className={cn(
                   "font-medium text-(--text)",
                   size === "sm" && "text-[10px]",
                   size === "md" && "text-xs"

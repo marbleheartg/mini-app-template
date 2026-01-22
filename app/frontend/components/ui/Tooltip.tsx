@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type ReactNode, useState, useRef, useEffect, useCallback } from "react"
 
 type TooltipPosition = "top" | "bottom" | "left" | "right"
@@ -97,7 +97,7 @@ export function Tooltip({ content, children, position = "top", delay = 200, clas
         <div
           ref={tooltipRef}
           style={{ left: coords.x, top: coords.y }}
-          className={clsx(
+          className={cn(
             "fixed z-50 pointer-events-none",
             "px-2.5 py-1.5 rounded-lg",
             "text-[10px] font-medium lowercase text-(--heading)",
@@ -112,7 +112,7 @@ export function Tooltip({ content, children, position = "top", delay = 200, clas
         >
           {content}
           <div
-            className={clsx(
+            className={cn(
               "absolute w-2 h-2 rotate-45 bg-(--surface)/90",
               position === "top" && "bottom-[-4px] left-1/2 -translate-x-1/2",
               position === "bottom" && "top-[-4px] left-1/2 -translate-x-1/2",

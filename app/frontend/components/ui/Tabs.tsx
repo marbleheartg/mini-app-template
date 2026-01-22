@@ -1,5 +1,5 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type ReactNode, useState, useRef, useEffect, useLayoutEffect } from "react"
 
 interface Tab {
@@ -59,7 +59,7 @@ export function Tabs({
   return (
     <div
       ref={containerRef}
-      className={clsx(
+      className={cn(
         "relative flex",
         fullWidth && "w-full",
         variant === "default" && "bg-white/5 rounded-xl p-1 gap-1",
@@ -74,7 +74,7 @@ export function Tabs({
           data-tab-id={tab.id}
           onClick={() => handleTabClick(tab)}
           disabled={tab.disabled}
-          className={clsx(
+          className={cn(
             "relative flex items-center justify-center gap-1.5",
             "font-bold lowercase tracking-wide",
             "transition-all duration-200",
@@ -133,7 +133,7 @@ interface TabPanelProps {
 
 export function TabPanel({ children, className }: TabPanelProps) {
   return (
-    <div className={clsx("animate-in fade-in slide-in-from-bottom-2 duration-300", className)}>
+    <div className={cn("animate-in fade-in slide-in-from-bottom-2 duration-300", className)}>
       {children}
     </div>
   )

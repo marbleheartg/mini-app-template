@@ -1,5 +1,5 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type InputHTMLAttributes, forwardRef } from "react"
 
 interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "size"> {
@@ -14,49 +14,62 @@ const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
     const handleChange = () => {
       if (disabled) return
       if (haptic) {
-        sdk.haptics.impactOccurred("light")
+        try {
+          sdk.haptics.impactOccurred("light")
+        } catch {
+          // Ignore
+        }
       }
       onChange?.(!checked)
     }
 
     return (
-      <button
-        type="button"
-        role="switch"
-        aria-checked={checked}
-        disabled={disabled}
-        onClick={handleChange}
-        className={clsx(
-          "relative inline-flex shrink-0 cursor-pointer items-center",
-          "rounded-full transition-colors duration-200 ease-out",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--heading)/50",
-          "disabled:cursor-not-allowed disabled:opacity-50",
-
-          // Size variants
-          size === "sm" && "h-5 w-9",
-          size === "md" && "h-6 w-11",
-
-          // State colors
-          checked ? "bg-(--heading)/80" : "bg-white/15 border border-(--border)",
-
-          className,
+      <label
+        className={cn(
+          "relative inline-flex items-center cursor-pointer",
+          disabled && "cursor-not-allowed opacity-50",
+          className
         )}
       >
-        <input ref={ref} type="checkbox" checked={checked} onChange={() => {}} className="sr-only" {...props} />
-        <span
-          className={clsx(
-            "pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 rounded-full bg-white shadow-md",
-            "transition-transform duration-200 ease-out",
-
-            // Size variants
-            size === "sm" && "h-4 w-4",
-            size === "md" && "h-5 w-5",
-
-            // Horizontal position
-            checked ? (size === "sm" ? "translate-x-4" : "translate-x-5") : "translate-x-0.5",
-          )}
+        <input
+          ref={ref}
+          type="checkbox"
+          className="sr-only peer"
+          checked={checked}
+          onChange={handleChange}
+          disabled={disabled}
+          {...props}
         />
-      </button>
+        <div
+          className={cn(
+            "rounded-full transition-colors duration-200 ease-out border",
+            "peer-focus-visible:ring-2 peer-focus-visible:ring-(--heading)/50",
+            
+            // Size variants
+            size === "sm" && "h-5 w-9",
+            size === "md" && "h-6 w-11",
+
+            // State colors
+            checked 
+              ? "bg-(--heading)/80 border-transparent" 
+              : "bg-white/15 border-(--border)"
+          )}
+        >
+          <span
+            className={cn(
+              "absolute top-1/2 -translate-y-1/2 rounded-full bg-white shadow-md",
+              "transition-transform duration-200 ease-out",
+
+              // Size variants
+              size === "sm" && "h-4 w-4 left-0.5",
+              size === "md" && "h-5 w-5 left-0.5",
+
+              // Horizontal position
+              checked && (size === "sm" ? "translate-x-4" : "translate-x-5")
+            )}
+          />
+        </div>
+      </label>
     )
   },
 )

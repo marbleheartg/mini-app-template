@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type HTMLAttributes, forwardRef } from "react"
 
 interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
@@ -14,21 +14,21 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>(
     const percentage = Math.min(Math.max((value / max) * 100, 0), 100)
 
     return (
-      <div ref={ref} className={clsx("flex flex-col gap-1", className)} {...props}>
+      <div ref={ref} className={cn("flex flex-col gap-1", className)} {...props}>
         {showLabel && (
           <div className="flex justify-between text-[10px]">
             <span className="text-(--text)/60">{Math.round(percentage)}%</span>
           </div>
         )}
         <div
-          className={clsx(
+          className={cn(
             "w-full overflow-hidden rounded-full bg-white/10",
             size === "sm" && "h-1.5",
             size === "md" && "h-2.5",
           )}
         >
           <div
-            className={clsx(
+            className={cn(
               "h-full rounded-full transition-all duration-500 ease-out",
               variant === "default" && "bg-(--heading)/80",
               variant === "success" && "bg-emerald-500",
@@ -61,7 +61,7 @@ const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps>(
     const offset = circumference - (percentage / 100) * circumference
 
     return (
-      <div ref={ref} className={clsx("relative inline-flex items-center justify-center", className)} {...props}>
+      <div ref={ref} className={cn("relative inline-flex items-center justify-center", className)} {...props}>
         <svg width={size} height={size} className="-rotate-90">
           <circle cx={size / 2} cy={size / 2} r={radius} strokeWidth={strokeWidth} className="fill-none stroke-white/10" />
           <circle

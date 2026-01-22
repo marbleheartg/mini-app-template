@@ -1,5 +1,5 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type ReactNode, useRef, useLayoutEffect, useState } from "react"
 
 interface Segment {
@@ -55,7 +55,7 @@ export function SegmentedControl({
   return (
     <div
       ref={containerRef}
-      className={clsx(
+      className={cn(
         "relative inline-flex",
         "bg-white/5 rounded-xl p-1",
         fullWidth && "w-full",
@@ -64,7 +64,7 @@ export function SegmentedControl({
     >
       {/* Animated indicator */}
       <div
-        className={clsx(
+        className={cn(
           "absolute bg-white/15 glass rounded-lg",
           "transition-all duration-300 ease-out",
           size === "sm" && "top-1 bottom-1",
@@ -79,7 +79,7 @@ export function SegmentedControl({
           data-segment-value={segment.value}
           onClick={() => handleSelect(segment)}
           disabled={segment.disabled}
-          className={clsx(
+          className={cn(
             "relative z-10 flex items-center justify-center gap-1.5",
             "font-bold lowercase tracking-wide",
             "transition-colors duration-200",

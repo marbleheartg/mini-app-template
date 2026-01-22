@@ -1,5 +1,5 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type ButtonHTMLAttributes, forwardRef } from "react"
 
 type IconButtonVariant = "default" | "ghost" | "danger"
@@ -16,7 +16,11 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ className, variant = "default", size = "md", haptic = true, disabled, onClick, children, ...props }, ref) => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (haptic) {
-        sdk.haptics.impactOccurred("light")
+        try {
+          sdk.haptics.impactOccurred("light")
+        } catch {
+          // Ignore
+        }
       }
       onClick?.(e)
     }
@@ -26,7 +30,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         disabled={disabled}
         onClick={handleClick}
-        className={clsx(
+        className={cn(
           "inline-flex items-center justify-center",
           "[&>svg]:block [&>svg]:shrink-0 [&>svg]:pt-px",
           "rounded-full",

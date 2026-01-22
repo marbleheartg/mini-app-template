@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react"
 
 type ToastVariant = "default" | "success" | "warning" | "error"
@@ -108,7 +108,7 @@ function ToastItem({ toast, onDismiss }: ToastItemProps) {
   return (
     <div
       onClick={onDismiss}
-      className={clsx(
+      className={cn(
         "flex items-center gap-2",
         "px-4 py-2.5 rounded-2xl",
         "text-xs font-medium lowercase",

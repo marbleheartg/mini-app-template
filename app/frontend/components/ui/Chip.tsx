@@ -1,5 +1,5 @@
 import sdk from "@farcaster/miniapp-sdk"
-import clsx from "clsx"
+import { cn } from "@/lib/utils/cn"
 import { type HTMLAttributes, forwardRef, type ReactNode } from "react"
 
 type ChipVariant = "default" | "primary" | "success" | "warning" | "danger"
@@ -53,7 +53,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
       <div
         ref={ref}
         onClick={handleClick}
-        className={clsx(
+        className={cn(
           "inline-flex items-center gap-1.5",
           "font-bold lowercase tracking-wide",
           "rounded-full",
@@ -108,7 +108,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
           <button
             type="button"
             onClick={handleRemove}
-            className={clsx(
+            className={cn(
               "shrink-0 rounded-full p-0.5 -mr-0.5",
               "transition-colors duration-150",
               "hover:bg-black/20"
@@ -133,7 +133,7 @@ interface ChipGroupProps extends HTMLAttributes<HTMLDivElement> {
 
 const ChipGroup = forwardRef<HTMLDivElement, ChipGroupProps>(({ className, children, ...props }, ref) => {
   return (
-    <div ref={ref} className={clsx("flex flex-wrap gap-2", className)} {...props}>
+    <div ref={ref} className={cn("flex flex-wrap gap-2", className)} {...props}>
       {children}
     </div>
   )
