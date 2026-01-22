@@ -28,6 +28,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         onClick={handleClick}
         className={clsx(
           "inline-flex items-center justify-center",
+          "[&>svg]:block [&>svg]:shrink-0 [&>svg]:pt-px",
           "rounded-full",
           "transition-all duration-200 ease-out",
           "active:scale-95",
@@ -40,18 +41,9 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           size === "lg" && "w-11 h-11",
 
           // Color variants
-          variant === "default" && [
-            "bg-white/10 text-(--text)",
-            "border border-(--border)",
-            "hover:bg-white/15 hover:text-(--heading)",
-            "glass",
-          ],
+          variant === "default" && ["bg-white/10 text-(--text)", "border border-(--border)", "hover:bg-white/15 hover:text-(--heading)", "glass"],
           variant === "ghost" && ["bg-transparent text-(--text)", "hover:bg-white/8 hover:text-(--heading)"],
-          variant === "danger" && [
-            "bg-red-500/20 text-red-300",
-            "border border-red-500/30",
-            "hover:bg-red-500/30 hover:text-red-200",
-          ],
+          variant === "danger" && ["bg-red-500/20 text-red-300", "border border-red-500/30", "hover:bg-red-500/30 hover:text-red-200"],
 
           className,
         )}

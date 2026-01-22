@@ -20,23 +20,28 @@ export default function App() {
   useEffect(() => {
     clientErrorHandling()
     ;(async function () {
-      try {
-        const { user, client } = await sdk.context
-        const capabilities = await sdk.getCapabilities()
-        updateStore({ user, client, capabilities })
-      } catch {}
+      const isMiniApp = await sdk.isInMiniApp()
 
-      try {
-        await preloadImages([...pngImgSrcs.map((src) => `${src}.png`), ...svgImgSrcs.map((src) => `${src}.svg`)].map((src) => `/images/${src}`))
-      } catch {
-      } finally {
-        await sdk.actions.ready({ disableNativeGestures: true }).catch(() => {})
+      if (isMiniApp) {
+        try {
+          const { user, client } = await sdk.context
+          const capabilities = await sdk.getCapabilities()
+          updateStore({ user, client, capabilities })
+        } catch {}
+
+        try {
+          await preloadImages([...pngImgSrcs.map((src) => `${src}.png`), ...svgImgSrcs.map((src) => `${src}.svg`)].map((src) => `/images/${src}`))
+        } catch {
+        } finally {
+          await sdk.actions.ready({ disableNativeGestures: true }).catch(() => {})
+        }
+
+        try {
+          const { token: session } = await sdk.quickAuth.getToken()
+          updateStore({ session })
+        } catch {}
+      } else {
       }
-
-      try {
-        const { token: session } = await sdk.quickAuth.getToken()
-        updateStore({ session })
-      } catch {}
     })()
   }, [])
 
