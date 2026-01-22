@@ -20,13 +20,7 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>(
             <span className="text-(--text)/60">{Math.round(percentage)}%</span>
           </div>
         )}
-        <div
-          className={cn(
-            "w-full overflow-hidden rounded-full bg-white/10",
-            size === "sm" && "h-1.5",
-            size === "md" && "h-2.5",
-          )}
-        >
+        <div className={cn("w-full overflow-hidden rounded-full bg-white/10", size === "sm" && "h-1.5", size === "md" && "h-2.5")}>
           <div
             className={cn(
               "h-full rounded-full transition-all duration-500 ease-out",
@@ -77,9 +71,7 @@ const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps>(
             }}
           />
         </svg>
-        {showLabel && (
-          <span className="absolute text-[10px] font-bold text-(--text)">{Math.round(percentage)}%</span>
-        )}
+        {showLabel && <span className="absolute text-[10px] font-bold text-(--text)">{Math.round(percentage)}%</span>}
       </div>
     )
   },
@@ -87,5 +79,5 @@ const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps>(
 
 CircularProgress.displayName = "CircularProgress"
 
-export { Progress, CircularProgress }
+export { CircularProgress, Progress }
 export default Progress

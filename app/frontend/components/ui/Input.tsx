@@ -42,7 +42,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ className, label, erro
           id={inputId}
           type={inputType}
           aria-invalid={!!error}
-          aria-describedby={error ? errorId : hint ? hintId : undefined}
+          aria-describedby={
+            error ? errorId
+            : hint ?
+              hintId
+            : undefined
+          }
           className={cn(
             "w-full bg-(--surface)/10 text-(--text) border border-(--border) rounded-lg outline-none p-2 pt-1.5",
             "transition-colors duration-200",
@@ -107,7 +112,12 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, la
         ref={ref}
         id={textareaId}
         aria-invalid={!!error}
-        aria-describedby={error ? errorId : hint ? hintId : undefined}
+        aria-describedby={
+          error ? errorId
+          : hint ?
+            hintId
+          : undefined
+        }
         className={cn(
           "min-h-[80px] w-full bg-(--surface)/10 text-(--text) border border-(--border) rounded-lg outline-none p-2 pt-1.5 resize-none",
           "transition-colors duration-200",

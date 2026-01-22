@@ -1,6 +1,6 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
-import { type ReactNode, useState, useRef, useEffect, useLayoutEffect } from "react"
+import sdk from "@farcaster/miniapp-sdk"
+import { type ReactNode, useLayoutEffect, useRef, useState } from "react"
 
 interface Tab {
   id: string
@@ -20,16 +20,7 @@ interface TabsProps {
   haptic?: boolean
 }
 
-export function Tabs({
-  tabs,
-  activeTab,
-  onChange,
-  variant = "default",
-  size = "md",
-  fullWidth = false,
-  className,
-  haptic = true,
-}: TabsProps) {
+export function Tabs({ tabs, activeTab, onChange, variant = "default", size = "md", fullWidth = false, className, haptic = true }: TabsProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 })
 
@@ -65,10 +56,10 @@ export function Tabs({
         variant === "default" && "bg-white/5 rounded-xl p-1 gap-1",
         variant === "pills" && "gap-2",
         variant === "underline" && "border-b border-(--border)/30",
-        className
+        className,
       )}
     >
-      {tabs.map(tab => (
+      {tabs.map((tab) => (
         <button
           key={tab.id}
           data-tab-id={tab.id}
@@ -88,26 +79,20 @@ export function Tabs({
             // Variant: default (segmented)
             variant === "default" && [
               "rounded-lg",
-              activeTab === tab.id
-                ? "bg-white/15 text-(--heading) glass"
-                : "text-(--text)/70 hover:text-(--text) hover:bg-white/5",
+              activeTab === tab.id ? "bg-white/15 text-(--heading) glass" : "text-(--text)/70 hover:text-(--text) hover:bg-white/5",
             ],
 
             // Variant: pills
             variant === "pills" && [
               "rounded-full",
-              activeTab === tab.id
-                ? "bg-(--heading)/90 text-(--bg)"
-                : "bg-white/10 text-(--text)/70 hover:text-(--text) hover:bg-white/15",
+              activeTab === tab.id ? "bg-(--heading)/90 text-(--bg)" : "bg-white/10 text-(--text)/70 hover:text-(--text) hover:bg-white/15",
             ],
 
             // Variant: underline
             variant === "underline" && [
               "pb-2.5 border-b-2 -mb-px",
-              activeTab === tab.id
-                ? "text-(--heading) border-transparent"
-                : "text-(--text)/70 hover:text-(--text) border-transparent",
-            ]
+              activeTab === tab.id ? "text-(--heading) border-transparent" : "text-(--text)/70 hover:text-(--text) border-transparent",
+            ],
           )}
         >
           {tab.icon}
@@ -132,11 +117,7 @@ interface TabPanelProps {
 }
 
 export function TabPanel({ children, className }: TabPanelProps) {
-  return (
-    <div className={cn("animate-in fade-in slide-in-from-bottom-2 duration-300", className)}>
-      {children}
-    </div>
-  )
+  return <div className={cn("animate-in fade-in slide-in-from-bottom-2 duration-300", className)}>{children}</div>
 }
 
 export default Tabs

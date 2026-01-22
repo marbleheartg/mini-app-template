@@ -1,5 +1,5 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
+import sdk from "@farcaster/miniapp-sdk"
 import NextImage from "next/image"
 import { useEffect } from "react"
 import { NavLink } from "react-router"

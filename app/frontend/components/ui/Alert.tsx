@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils/cn"
 import { AlertTriangle, CheckCircle, Info, X, XCircle } from "lucide-react"
-import { type HTMLAttributes, forwardRef, type ReactNode } from "react"
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react"
 
 type AlertVariant = "info" | "success" | "warning" | "danger"
 
@@ -34,7 +34,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(
           variant === "warning" && "bg-amber-500/15 border border-amber-500/25 text-amber-200",
           variant === "danger" && "bg-red-500/15 border border-red-500/25 text-red-200",
 
-          className
+          className,
         )}
         {...props}
       >
@@ -44,7 +44,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(
             variant === "info" && "text-sky-400",
             variant === "success" && "text-emerald-400",
             variant === "warning" && "text-amber-400",
-            variant === "danger" && "text-red-400"
+            variant === "danger" && "text-red-400",
           )}
         >
           {icon || icons[variant]}
@@ -58,18 +58,14 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(
             type="button"
             onClick={onClose}
             aria-label="Close alert"
-            className={cn(
-              "shrink-0 p-1 rounded-lg",
-              "transition-colors duration-150",
-              "hover:bg-white/10 cursor-pointer"
-            )}
+            className={cn("shrink-0 p-1 rounded-lg border-0", "transition-colors duration-150", "hover:bg-white/10 cursor-pointer")}
           >
             <X className="w-3.5 h-3.5" />
           </button>
         )}
       </div>
     )
-  }
+  },
 )
 
 Alert.displayName = "Alert"

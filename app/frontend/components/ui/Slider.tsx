@@ -1,5 +1,5 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
+import sdk from "@farcaster/miniapp-sdk"
 import { type HTMLAttributes, forwardRef, useEffect, useRef, useState } from "react"
 
 interface SliderProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -17,7 +17,24 @@ interface SliderProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
 }
 
 const Slider = forwardRef<HTMLDivElement, SliderProps>(
-  ({ className, value, min = 0, max = 100, step = 1, onChange, disabled = false, showValue = false, label, variant = "default", size = "md", haptic = true, ...props }, ref) => {
+  (
+    {
+      className,
+      value,
+      min = 0,
+      max = 100,
+      step = 1,
+      onChange,
+      disabled = false,
+      showValue = false,
+      label,
+      variant = "default",
+      size = "md",
+      haptic = true,
+      ...props
+    },
+    ref,
+  ) => {
     const percentage = ((value - min) / (max - min)) * 100
     const inputRef = useRef<HTMLInputElement>(null)
     const [isDragging, setIsDragging] = useState(false)
@@ -71,7 +88,9 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
         )}
         <div className="relative">
           {/* Track */}
-          <div className={cn("absolute left-0 right-0 inset-y-0 my-auto rounded-full bg-white/10", size === "sm" && "h-1.5", size === "md" && "h-2")} />
+          <div
+            className={cn("absolute left-0 right-0 inset-y-0 my-auto rounded-full bg-white/10", size === "sm" && "h-1.5", size === "md" && "h-2")}
+          />
           {/* Filled track */}
           <div
             className={cn(

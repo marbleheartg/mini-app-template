@@ -44,10 +44,9 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
         )}
         {...props}
       >
-        {src ? (
+        {src ?
           <NextImage src={src} alt={alt} width={dimension} height={dimension} className="rounded-full object-cover" />
-        ) : (
-          <div
+        : <div
             className={cn(
               "w-full h-full flex items-center justify-center",
               "bg-(--surface)/50 text-(--heading)",
@@ -61,7 +60,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           >
             {fallback?.slice(0, 2) || "?"}
           </div>
-        )}
+        }
 
         {status && (
           <span

@@ -85,5 +85,5 @@ const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(({ className, width, 
 
 Skeleton.displayName = "Skeleton"
 
-export { Spinner, LoadingOverlay, Skeleton }
+export { LoadingOverlay, Skeleton, Spinner }
 export default Spinner

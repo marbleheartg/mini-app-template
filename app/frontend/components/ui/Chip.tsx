@@ -1,6 +1,6 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
-import { type HTMLAttributes, forwardRef, type ReactNode } from "react"
+import sdk from "@farcaster/miniapp-sdk"
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react"
 
 type ChipVariant = "default" | "primary" | "success" | "warning" | "danger"
 type ChipSize = "sm" | "md"
@@ -32,7 +32,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
       onClick,
       ...props
     },
-    ref
+    ref,
   ) => {
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       if (clickable && haptic) {
@@ -68,37 +68,31 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
 
           // Variants
           variant === "default" && [
-            selected
-              ? "bg-white/25 text-(--heading) border border-white/30"
-              : "bg-white/10 text-(--text) border border-(--border)",
+            selected ? "bg-white/25 text-(--heading) border border-white/30" : "bg-white/10 text-(--text) border border-(--border)",
             clickable && !selected && "hover:bg-white/15 hover:text-(--heading)",
           ],
           variant === "primary" && [
-            selected
-              ? "bg-(--heading)/90 text-(--bg) border border-(--heading)/30"
-              : "bg-(--heading)/20 text-(--heading) border border-(--heading)/30",
+            selected ?
+              "bg-(--heading)/90 text-(--bg) border border-(--heading)/30"
+            : "bg-(--heading)/20 text-(--heading) border border-(--heading)/30",
             clickable && !selected && "hover:bg-(--heading)/30",
           ],
           variant === "success" && [
-            selected
-              ? "bg-emerald-500/80 text-white border border-emerald-400/30"
-              : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30",
+            selected ?
+              "bg-emerald-500/80 text-white border border-emerald-400/30"
+            : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30",
             clickable && !selected && "hover:bg-emerald-500/30",
           ],
           variant === "warning" && [
-            selected
-              ? "bg-amber-500/80 text-white border border-amber-400/30"
-              : "bg-amber-500/20 text-amber-300 border border-amber-500/30",
+            selected ? "bg-amber-500/80 text-white border border-amber-400/30" : "bg-amber-500/20 text-amber-300 border border-amber-500/30",
             clickable && !selected && "hover:bg-amber-500/30",
           ],
           variant === "danger" && [
-            selected
-              ? "bg-red-500/80 text-white border border-red-400/30"
-              : "bg-red-500/20 text-red-300 border border-red-500/30",
+            selected ? "bg-red-500/80 text-white border border-red-400/30" : "bg-red-500/20 text-red-300 border border-red-500/30",
             clickable && !selected && "hover:bg-red-500/30",
           ],
 
-          className
+          className,
         )}
         {...props}
       >
@@ -108,11 +102,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
           <button
             type="button"
             onClick={handleRemove}
-            className={cn(
-              "shrink-0 rounded-full p-0.5 -mr-0.5",
-              "transition-colors duration-150",
-              "hover:bg-black/20"
-            )}
+            className={cn("shrink-0 rounded-full p-0.5 -mr-0.5", "transition-colors duration-150", "hover:bg-black/20")}
           >
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
               <line x1="18" y1="6" x2="6" y2="18" />
@@ -122,7 +112,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
         )}
       </div>
     )
-  }
+  },
 )
 
 Chip.displayName = "Chip"

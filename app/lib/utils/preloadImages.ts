@@ -1,6 +1,6 @@
 export default function preloadImages(srcs: string[]): Promise<PromiseSettledResult<void>[]> {
   return Promise.allSettled(
-    srcs.map(src => {
+    srcs.map((src) => {
       return new Promise<void>((resolve, reject) => {
         const img = new Image()
         let done = false

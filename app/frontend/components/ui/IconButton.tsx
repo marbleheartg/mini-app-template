@@ -1,5 +1,5 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
+import sdk from "@farcaster/miniapp-sdk"
 import { type ButtonHTMLAttributes, forwardRef } from "react"
 
 type IconButtonVariant = "default" | "ghost" | "danger"

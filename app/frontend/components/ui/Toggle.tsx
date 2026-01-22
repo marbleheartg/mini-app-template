@@ -1,5 +1,5 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
+import sdk from "@farcaster/miniapp-sdk"
 import { type InputHTMLAttributes, forwardRef } from "react"
 
 interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "size"> {
@@ -24,35 +24,19 @@ const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
     }
 
     return (
-      <label
-        className={cn(
-          "relative inline-flex items-center cursor-pointer",
-          disabled && "cursor-not-allowed opacity-50",
-          className
-        )}
-      >
-        <input
-          ref={ref}
-          type="checkbox"
-          className="sr-only peer"
-          checked={checked}
-          onChange={handleChange}
-          disabled={disabled}
-          {...props}
-        />
+      <label className={cn("relative inline-flex items-center cursor-pointer", disabled && "cursor-not-allowed opacity-50", className)}>
+        <input ref={ref} type="checkbox" className="sr-only peer" checked={checked} onChange={handleChange} disabled={disabled} {...props} />
         <div
           className={cn(
             "rounded-full transition-colors duration-200 ease-out border",
             "peer-focus-visible:ring-2 peer-focus-visible:ring-(--heading)/50",
-            
+
             // Size variants
             size === "sm" && "h-5 w-9",
             size === "md" && "h-6 w-11",
 
             // State colors
-            checked 
-              ? "bg-(--heading)/80 border-transparent" 
-              : "bg-white/15 border-(--border)"
+            checked ? "bg-(--heading)/80 border-transparent" : "bg-white/15 border-(--border)",
           )}
         >
           <span
@@ -65,7 +49,7 @@ const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
               size === "md" && "h-5 w-5 left-0.5",
 
               // Horizontal position
-              checked && (size === "sm" ? "translate-x-4" : "translate-x-5")
+              checked && (size === "sm" ? "translate-x-4" : "translate-x-5"),
             )}
           />
         </div>

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils/cn"
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react"
+import { createContext, useCallback, useContext, useState, type ReactNode } from "react"
 
 type ToastVariant = "default" | "success" | "warning" | "error"
 
@@ -34,7 +34,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
   const [toasts, setToasts] = useState<Toast[]>([])
 
   const dismiss = useCallback((id: string) => {
-    setToasts(prev => prev.filter(t => t.id !== id))
+    setToasts((prev) => prev.filter((t) => t.id !== id))
   }, [])
 
   const toast = useCallback(
@@ -42,7 +42,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
       const id = Math.random().toString(36).slice(2)
       const newToast: Toast = { id, message, variant, duration }
 
-      setToasts(prev => [...prev, newToast])
+      setToasts((prev) => [...prev, newToast])
 
       if (duration > 0) {
         setTimeout(() => dismiss(id), duration)
@@ -69,7 +69,7 @@ function ToastContainer({ toasts, dismiss }: ToastContainerProps) {
 
   return (
     <div className="fixed bottom-24 left-0 right-0 z-50 flex flex-col items-center gap-2 px-5 pointer-events-none">
-      {toasts.map(toast => (
+      {toasts.map((toast) => (
         <ToastItem key={toast.id} toast={toast} onDismiss={() => dismiss(toast.id)} />
       ))}
     </div>

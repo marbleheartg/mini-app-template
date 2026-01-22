@@ -1,5 +1,5 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
+import sdk from "@farcaster/miniapp-sdk"
 import { Loader2 } from "lucide-react"
 import { type ButtonHTMLAttributes, forwardRef, type ReactNode } from "react"
 
@@ -16,7 +16,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "primary", size = "md", loading = false, haptic = true, disabled, children, onClick, startIcon, endIcon, ...props }, ref) => {
+  (
+    { className, variant = "primary", size = "md", loading = false, haptic = true, disabled, children, onClick, startIcon, endIcon, ...props },
+    ref,
+  ) => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (haptic) {
         try {
@@ -52,17 +55,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             "hover:bg-(--heading) hover:shadow-lg hover:shadow-(--heading)/20",
             "glass",
           ],
-          variant === "secondary" && [
-            "bg-white/10 text-(--text)",
-            "border border-(--border)",
-            "hover:bg-white/15 hover:text-(--heading)",
-            "glass",
-          ],
-          variant === "ghost" && [
-            "bg-transparent text-(--text)",
-            "border border-transparent",
-            "hover:bg-white/8 hover:text-(--heading)",
-          ],
+          variant === "secondary" && ["bg-white/10 text-(--text)", "border border-(--border)", "hover:bg-white/15 hover:text-(--heading)", "glass"],
+          variant === "ghost" && ["bg-transparent text-(--text)", "border border-transparent", "hover:bg-white/8 hover:text-(--heading)"],
           variant === "danger" && [
             "bg-red-500/80 text-white",
             "border border-red-400/30",
