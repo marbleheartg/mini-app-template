@@ -1,5 +1,5 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
+import sdk from "@farcaster/miniapp-sdk"
 import { Check, ChevronDown } from "lucide-react"
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { createPortal } from "react-dom"
@@ -23,18 +23,23 @@ interface SelectProps {
   haptic?: boolean
 }
 
-export function Select({ options, value, onChange, placeholder = "select...", label, error, disabled = false, className, haptic = true }: SelectProps) {
+export function Select({
+  options,
+  value,
+  onChange,
+  placeholder = "select...",
+  label,
+  error,
+  disabled = false,
+  className,
+  haptic = true,
+}: SelectProps) {
   const [open, setOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState({ top: 0, left: 0, width: 0 })
   const selectedOption = options.find((opt) => opt.value === value)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -122,7 +127,7 @@ export function Select({ options, value, onChange, placeholder = "select...", la
         </button>
 
         {open &&
-          mounted &&
+          typeof document !== "undefined" &&
           createPortal(
             <div
               ref={dropdownRef}
@@ -136,7 +141,7 @@ export function Select({ options, value, onChange, placeholder = "select...", la
                 "z-50",
                 "bg-(--surface) border border-(--border) rounded-xl overflow-hidden shadow-xl",
                 "animate-in fade-in duration-150",
-                "max-h-48 overflow-y-auto"
+                "max-h-48 overflow-y-auto",
               )}
             >
               {options.map((option) => (
@@ -147,18 +152,16 @@ export function Select({ options, value, onChange, placeholder = "select...", la
                     "flex items-center gap-2 px-3 py-2",
                     "transition-colors duration-150",
                     option.disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer hover:bg-white/10",
-                    option.value === value && "bg-white/10 text-(--heading)"
+                    option.value === value && "bg-white/10 text-(--heading)",
                   )}
                 >
                   {option.icon}
                   <span className="truncate">{option.label}</span>
-                  {option.value === value && (
-                    <Check className="ml-auto shrink-0 text-(--heading) w-3.5 h-3.5" />
-                  )}
+                  {option.value === value && <Check className="ml-auto shrink-0 text-(--heading) w-3.5 h-3.5" />}
                 </div>
               ))}
             </div>,
-            document.body
+            document.body,
           )}
       </div>
       {error && <span className="text-[10px] text-red-400">{error}</span>}

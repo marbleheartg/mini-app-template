@@ -1,8 +1,8 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
-import { type HTMLAttributes, forwardRef, type ReactNode } from "react"
+import sdk from "@farcaster/miniapp-sdk"
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react"
 
-interface ListProps extends HTMLAttributes<HTMLDivElement> {}
+type ListProps = HTMLAttributes<HTMLDivElement>
 
 const List = forwardRef<HTMLDivElement, ListProps>(({ className, children, ...props }, ref) => {
   return (

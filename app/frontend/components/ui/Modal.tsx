@@ -1,7 +1,7 @@
-import sdk from "@farcaster/miniapp-sdk"
 import { cn } from "@/lib/utils/cn"
+import sdk from "@farcaster/miniapp-sdk"
 import { X } from "lucide-react"
-import { forwardRef, useEffect, useRef, useState, type HTMLAttributes } from "react"
+import { forwardRef, useEffect, useRef, type HTMLAttributes } from "react"
 import { createPortal } from "react-dom"
 import Button from "./Button"
 import IconButton from "./IconButton"
@@ -13,66 +13,72 @@ interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   closeOnEscape?: boolean
 }
 
-const Modal = forwardRef<HTMLDivElement, ModalProps>(({ className, open, onClose, closeOnOverlay = true, closeOnEscape = true, children, ...props }, ref) => {
-  const contentRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState(false)
+const Modal = forwardRef<HTMLDivElement, ModalProps>(
+  ({ className, open, onClose, closeOnOverlay = true, closeOnEscape = true, children, ...props }, ref) => {
+    const contentRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+    useEffect(() => {
+      if (!closeOnEscape) return
 
-  useEffect(() => {
-    if (!closeOnEscape) return
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape" && open) {
+          onClose()
+        }
+      }
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && open) {
+      document.addEventListener("keydown", handleKeyDown)
+      return () => document.removeEventListener("keydown", handleKeyDown)
+    }, [open, onClose, closeOnEscape])
+
+    useEffect(() => {
+      if (open) {
+        document.body.style.overflow = "hidden"
+      } else {
+        document.body.style.overflow = ""
+      }
+
+      return () => {
+        document.body.style.overflow = ""
+      }
+    }, [open])
+
+    const handleOverlayClick = (e: React.MouseEvent) => {
+      if (closeOnOverlay && contentRef.current && !contentRef.current.contains(e.target as Node)) {
+        try {
+          sdk.haptics.impactOccurred("light")
+        } catch {
+          // Ignore
+        }
         onClose()
       }
     }
 
-    document.addEventListener("keydown", handleKeyDown)
-    return () => document.removeEventListener("keydown", handleKeyDown)
-  }, [open, onClose, closeOnEscape])
+    if (!open || typeof document === "undefined") return null
 
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
-
-    return () => {
-      document.body.style.overflow = ""
-    }
-  }, [open])
-
-  const handleOverlayClick = (e: React.MouseEvent) => {
-    if (closeOnOverlay && contentRef.current && !contentRef.current.contains(e.target as Node)) {
-      try {
-        sdk.haptics.impactOccurred("light")
-      } catch {
-        // Ignore
-      }
-      onClose()
-    }
-  }
-
-  if (!open || !mounted) return null
-
-  return createPortal(
-    <div
-      ref={ref}
-      onClick={handleOverlayClick}
-      className={cn("fixed inset-0 z-50", "flex items-center justify-center p-5", "bg-black/60 backdrop-blur-sm", "animate-in fade-in duration-200", className)}
-      {...props}
-    >
-      <div ref={contentRef} className={cn("relative w-full max-w-sm", "bg-(--surface)/80 rounded-3xl", "animate-in zoom-in-95 slide-in-from-bottom-4 duration-300")}>
-        {children}
-      </div>
-    </div>,
-    document.body
-  )
-})
+    return createPortal(
+      <div
+        ref={ref}
+        onClick={handleOverlayClick}
+        className={cn(
+          "fixed inset-0 z-50",
+          "flex items-center justify-center p-5",
+          "bg-black/60 backdrop-blur-sm",
+          "animate-in fade-in duration-200",
+          className,
+        )}
+        {...props}
+      >
+        <div
+          ref={contentRef}
+          className={cn("relative w-full max-w-sm", "bg-(--surface)/80 rounded-3xl", "animate-in zoom-in-95 slide-in-from-bottom-4 duration-300")}
+        >
+          {children}
+        </div>
+      </div>,
+      document.body,
+    )
+  },
+)
 
 Modal.displayName = "Modal"
 
