@@ -1,9 +1,9 @@
 const CA = "0x980C93A5A5706Cf9B2cEa8E5f4b88070AF1155AA"
 
 const MINIAPP = {
-  title: "title",
-  description: "description",
-  tags: ["1", "2", "3", "4", "5"],
+  title: "mini-app-template",
+  description: "mini-app-template description",
+  tags: ["mini", "app", "template", "4", "5"],
   primaryCategory: "developer-tools",
   // "games, social, finance, utility, productivity, health-fitness, news-media, music, shopping, education, developer-tools, entertainment, art-creativity",
   webhookUrl: "https://api.neynar.com/f/app/8ebe7bf9-a1da-4bfb-9fa9-0c52a7aec475/event",
