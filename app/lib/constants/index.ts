@@ -7,9 +7,9 @@ const MINIAPP = {
   bgColor: "#ffffff",
   requiredCapabilities: ["actions.ready"],
   requiredChains: ["eip155:8453"],
+  webhookUrl: "https://api.neynar.com/f/app/8ebe7bf9-a1da-4bfb-9fa9-0c52a7aec475/event",
   primaryCategory: "developer-tools",
   // "games, social, finance, utility, productivity, health-fitness, news-media, music, shopping, education, developer-tools, entertainment, art-creativity",
-  // webhookUrl: "webhookUrl",
 }
 
 const MINIAPP_METADATA = {
