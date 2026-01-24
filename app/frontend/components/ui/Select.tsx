@@ -111,7 +111,7 @@ export function Select({
           className={cn(
             "w-full flex items-center justify-between gap-2",
             "bg-(--surface)/10 text-(--text) border rounded-lg",
-            "p-2 pt-1.5 text-left",
+            "pt-1.5 pb-1 px-2 text-left",
             "transition-all duration-200",
             "disabled:opacity-50 disabled:cursor-not-allowed",
             open && "border-(--heading)/50",
