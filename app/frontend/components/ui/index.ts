@@ -2,6 +2,7 @@
 // Based on the app's design system using oklch colors and glassmorphism
 
 // Core Components
+export { default as BannerCard } from "./BannerCard"
 export { default as Button } from "./Button"
 export { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./Card"
 export { default as IconButton } from "./IconButton"
