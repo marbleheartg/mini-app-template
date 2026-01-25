@@ -49,11 +49,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ className, label, erro
             : undefined
           }
           className={cn(
-            "w-full bg-(--surface)/10 text-(--text) border border-(--border) rounded-lg outline-none p-2 pt-1.5",
+            "w-full bg-(--surface)/10 text-(--text) border border-(--border) rounded-lg outline-none p-2",
             "transition-colors duration-200",
             "focus:border-(--heading)/50",
             "disabled:opacity-50 disabled:cursor-not-allowed",
-            leftIcon && "pl-9",
+            leftIcon && "pl-8.5",
             (rightIcon || isPassword) && "pr-10",
             error && "border-red-500/50 focus:border-red-500",
             className,

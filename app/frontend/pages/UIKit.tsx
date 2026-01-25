@@ -110,6 +110,7 @@ export default function UIKit() {
         <CardContent className="flex flex-col gap-3">
           <div>{count !== undefined ? count : <Spinner size="xs" />}</div>
           <Button
+            className="w-fit"
             loading={isWriteIncrementPending || isIncrementLoading}
             onClick={() => {
               connect({ connector: connectors[0] })

@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --bg: oklch(0.3 0.08 265);
-  --bg-surface: oklch(from var(--bg) calc(l * 1.25) c h);
-  --bg-border: oklch(from var(--bg-surface) calc(l + 0.1) c h);
-  --surface: oklch(from var(--bg) calc(l * 1.6) c h);
-  --border: oklch(from var(--surface) calc(l + 0.1) c h);
-  --text: oklch(from var(--surface) calc(l + 0.4) calc(c * 1.4) h);
-  --heading: oklch(from var(--surface) 1 calc(c * 1.4) h);
+  --bg: oklch(0.25 0.07 230);
+
+  --bg-surface: oklch(from var(--bg) calc(l + 0.08) c h);
+  --bg-border: oklch(from var(--bg) calc(l + 0.14) c h);
+
+  --surface: oklch(from var(--bg) calc(l + 0.18) c h);
+  --border: oklch(from var(--bg) calc(l + 0.24) c h);
+
+  --text: oklch(from var(--bg) calc(l + 0.55) calc(c * 0.9) h);
+  --heading: oklch(from var(--bg) 0.98 calc(c * 1.05) h);
 
   --animate-orb-float-1: orb-float-1 20s ease-in-out infinite;
   --animate-orb-float-2: orb-float-2 25s ease-in-out infinite;

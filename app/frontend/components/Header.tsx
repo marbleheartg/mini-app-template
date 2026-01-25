@@ -32,7 +32,7 @@ const Header = () => {
       </div>
 
       <NavLink to="/home" onClick={() => sdk.haptics.impactOccurred("medium")}>
-        <div className={cn("relative flex items-center", "bg-white/10 glass rounded-2xl", "h-8", "pl-2 pr-[35px]")}>
+        <div className={cn("relative flex items-center", "bg-white/10 glass rounded-2xl", "h-8", "pl-2.5 pr-[35px]")}>
           <div className="text-base text-(--heading) pb-px">{user ? user.displayName : "nickname"}</div>
 
           <div className={cn("absolute right-0 top-0 aspect-square w-[30px]", "border-2 border-(--bg-border) rounded-full", "cursor-pointer")}>
