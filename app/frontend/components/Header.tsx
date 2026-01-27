@@ -27,12 +27,12 @@ const Header = () => {
 
   return (
     <header className={cn("fixed top-5 inset-x-9", "flex justify-between items-center", "z-30")}>
-      <div className={cn("w-8 bg-white/10 glass", "border-2 border-(--bg-border) rounded-full")}>
+      <div className={cn("w-8 glass bg-white/5", "border-2 border-(--bg-border) rounded-full")}>
         <NextImage className="rounded-full" src={"/images/og/icon.png"} alt="logo" width={32} height={32} priority />
       </div>
 
       <NavLink to="/home" onClick={() => sdk.haptics.impactOccurred("medium")}>
-        <div className={cn("relative flex items-center", "bg-white/10 glass rounded-2xl", "h-8", "pl-2.5 pr-[35px]")}>
+        <div className={cn("relative flex items-center", "glass bg-white/5 rounded-2xl", "h-8", "pl-2.5 pr-[35px]")}>
           <div className="text-base text-(--heading) pb-px">{user ? user.displayName : "nickname"}</div>
 
           <div className={cn("absolute right-0 top-0 aspect-square w-[30px]", "border-2 border-(--bg-border) rounded-full", "cursor-pointer")}>
