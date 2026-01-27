@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils/cn"
 import { type HTMLAttributes, type ReactNode, forwardRef } from "react"
 
 interface BannerCardProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
-  imageUrl: string
+  imageUrl?: string
   title?: ReactNode
   description?: ReactNode
   footer?: ReactNode
@@ -12,7 +12,21 @@ interface BannerCardProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> 
 }
 
 const BannerCard = forwardRef<HTMLDivElement, BannerCardProps>(
-  ({ className, imageUrl, title, description, footer, children, aspectRatio = "16/9", overlayOpacity = 0.1, imageBrightness = 1, ...props }, ref) => {
+  (
+    {
+      className,
+      imageUrl = "https://placecats.com/1000/400",
+      title,
+      description,
+      footer,
+      children,
+      aspectRatio = "5/2",
+      overlayOpacity = 0.1,
+      imageBrightness = 1,
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <div
         ref={ref}

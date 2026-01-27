@@ -103,7 +103,7 @@ export default function UIKit() {
 
   return (
     <main className={cn("flex flex-col gap-5", "px-5 pt-20 pb-26", "overflow-y-scroll overflow-x-hidden")}>
-      <BannerCard imageUrl="/images/banner.jpg?v=3" title="ui page" imageBrightness={1.2} overlayOpacity={0.15}></BannerCard>
+      <BannerCard title="ui page" imageBrightness={1.2} overlayOpacity={0.15}></BannerCard>
 
       {/* Tx Sending Button */}
       <Card>
